@@ -15,5 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('user', 'UserController');
-Route::resource('product', 'ProductController');
+Route::prefix('admin')->group(function () {
+    Route::resource('users', 'UserController');
+    Route::resource('products', 'ProductController');
+});
