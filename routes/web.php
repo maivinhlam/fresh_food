@@ -15,7 +15,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('admin')->group(function () {
+// Route::prefix('admin')->group(function () {
+//     Route::resource('users', 'UserController');
+//     Route::resource('products', 'ProductController');
+// })->middleware('auth');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group([
+    'name' => 'admin.',
+    'prefix' => 'admin',
+    'middleware' => 'auth'
+], function () {
     Route::resource('users', 'UserController');
     Route::resource('products', 'ProductController');
 });
