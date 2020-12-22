@@ -1,0 +1,23 @@
+.sidebar {      
+  .blocks {
+    display: flex;
+    flex-direction: column;
+   
+    .block {
+      padding: 10px 10px;
+      border: 1px solid;
+      
+      &:nth-child(2) {
+        margin: 10px 0;
+      }
+    }
+  }
+
+  .sideImage {
+    padding-top: 20px;
+    img {
+      width: 100%;
+    }
+  }
+
+}

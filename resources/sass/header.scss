@@ -1,0 +1,77 @@
+$backgroundColor: #80b435;
+$starColor: #fbed11;
+$blurTextColor: #b7b7b7;
+$btnAddToCartColor: #55a007;
+
+header {
+  background-color: $backgroundColor;
+  font-size: 0.8rem; 
+  
+  .container {
+    display: flex;
+    flex-direction: row;
+    
+    .logo {      
+      flex-grow: 1;
+      display: inline-block;
+      padding: 5px;
+    }
+
+    nav {     
+      ul {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        li {         
+          display: flex;          
+          a {               
+            text-transform: uppercase;
+            padding: 10px;
+            font-weight: bold;
+            color: #fff;            
+            display:flex;
+            align-items:center;   
+            &:hover {
+              background-color: #78d613;
+            }         
+          }
+        }
+      }
+    }
+
+    .search {
+      padding: 0 10px;  
+      display:flex;
+      align-items:center;  
+      a {
+        color: #fff;    
+      }
+    }
+
+    .cart {
+      padding: 0 10px;
+      display: flex;      
+      align-items:center; 
+      a {
+        color: #fff;    
+      }
+      i {        
+        position: relative;
+        .badge {
+          position: absolute;
+          height: 20px;
+          width: 20px;                  
+          display: inline-block;
+          margin-top: -75%;
+          background-color: #000;
+          padding: 5px;
+          border-radius: 50%;
+          font-size: 0.7em;
+          text-align: center;
+        }
+      }
+
+      
+    }
+  }
+}

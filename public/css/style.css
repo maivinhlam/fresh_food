@@ -1,0 +1,200 @@
+body {
+  font: 16px "Open Sans", Arial, Helvetica, sans-serif;
+}
+
+.hero .slide .dots {
+  margin-top: -2%;
+}
+.hero .slide .dots .dot {
+  cursor: pointer;
+  height: 10px;
+  width: 10px;
+  margin: 0 2px;
+  border: 1px solid;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+.hero .slide .dots .active {
+  background-color: #000;
+}
+.hero .slide .fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+main.index {
+  padding: 30px 0;
+}
+main.index .categorys {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 30px;
+}
+main.index .categorys .category {
+  padding: 20px 0;
+  flex: 33%;
+  position: relative;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+main.index .categorys .category img {
+  width: 100%;
+}
+main.index .categorys .category .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+main.index .categorys .category .title a {
+  position: relative;
+  text-transform: uppercase;
+  color: #333333;
+  font-weight: bold;
+  background-color: #fff;
+  padding: 10px 20px;
+}
+main.index .categorys .category .title a:before {
+  content: "";
+  position: absolute;
+  border: 3px solid #fff;
+  height: 130%;
+  width: 120%;
+  top: -15%;
+  left: -10%;
+}
+main.index .newProduct {
+  background-color: #80b435;
+}
+main.index .newProduct .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 0;
+  overflow: hidden;
+}
+main.index .newProduct .container > .title {
+  text-transform: uppercase;
+  color: #fff;
+}
+main.index .newProduct .container .icon {
+  padding: 10px 0;
+}
+main.index .newProduct .container .listProduct {
+  width: 100%;
+  position: relative;
+}
+main.index .newProduct .container .listProduct .product .image {
+  border: 1px solid #b7b7b8;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+}
+main.index .newProduct .container .listProduct .product .content {
+  padding: 10px 0;
+  background-color: #fff;
+  text-align: center;
+}
+main.index .newProduct .container .listProduct .product .content .title {
+  color: #000;
+  font-weight: bold;
+}
+main.index .newProduct .container .listProduct .product .content .addToCart {
+  color: red;
+}
+main.index .newProduct .container .listProduct .listproduct__button {
+  position: absolute;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+main.index .newProduct .container .listProduct .listproduct__button > * {
+  padding: 10px;
+  border: 1px solid #000;
+  background-color: #fff;
+}
+main.index .newProduct .container .listProduct .listproduct__button .listproduct__button__next {
+  right: 0;
+}
+main.index .handBook {
+  text-align: center;
+  padding: 20px 0;
+}
+main.index .handBook .container > .title {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+main.index .handBook .container > .icon {
+  padding: 20px 0px;
+}
+main.index .handBook .listHandBook {
+  display: flex;
+  flex-direction: row;
+}
+main.index .handBook .listHandBook .book {
+  padding: 0px 10px;
+}
+main.index .handBook .listHandBook .book .img img {
+  width: 100%;
+}
+main.index .handBook .listHandBook .book .title {
+  text-align: left;
+  font-weight: bold;
+}
+main.index .handBook .listHandBook .book .text {
+  text-align: left;
+  font-size: 0.8em;
+}
+
+#listProduct .product {
+  width: 24%;
+  margin: 10px 0;
+}
+#listProduct .product .image {
+  border: 1px solid #b7b7b8;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+}
+#listProduct .product .image img {
+  width: 100%;
+}
+#listProduct .product .content {
+  padding: 10px 0;
+  background-color: #fff;
+  text-align: center;
+}
+#listProduct .product .content .title {
+  color: #000;
+  font-weight: bold;
+}
+#listProduct .product .content .price {
+  color: #000;
+}
+#listProduct .product .content .addToCart {
+  color: red;
+}
+
+#hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+#hero .link {
+  position: absolute;
+  color: #fff;
+}
+#hero .link a {
+  color: #fff;
+}
+
+.comment {
+  padding: 4rem 0;
+}

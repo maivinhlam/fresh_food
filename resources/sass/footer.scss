@@ -1,0 +1,34 @@
+@import 'var';
+
+footer {
+  .info {
+    background-color: $backgroundColor;
+
+    .info__list {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .col {
+        padding: 10px;
+
+        .title {
+          color: #fff;
+          padding: 10px 0;
+        }
+
+        ul {
+          li {
+            color: #fff;
+            font-size: 0.7em;
+            padding: 5px 0px;
+          }
+        }
+      }
+    }
+  }
+
+  .copyright {
+    text-align: center;
+    padding: 15px 0;
+  }
+}

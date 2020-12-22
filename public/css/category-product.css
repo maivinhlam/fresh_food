@@ -1,0 +1,47 @@
+#categoty-product .content .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 30px 0;
+}
+#categoty-product .content .header .title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+#categoty-product .content .header .filter form {
+  display: flex;
+}
+#categoty-product .content .header .filter form select {
+  padding: 10px;
+  color: #b7b7b7;
+  border-color: #b7b7b7;
+  border-radius: 0;
+}
+#categoty-product .content .header .filter form button {
+  border-radius: 0;
+  padding: 10px 15px;
+  border: 0;
+  background-color: #b7b7b7;
+}
+#categoty-product .content .listProduct {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+#categoty-product .content .listProduct .product {
+  border: 1px solid #b7b7b8;
+  cursor: pointer;
+}
+#categoty-product .content .pagination ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px;
+  margin: 5px;
+}
+#categoty-product .content .pagination ul li a {
+  color: #fff;
+  padding: 5px 10px;
+  background-color: #c50808;
+  margin: 5px;
+}

@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('front_end.home');
 });
 
 // Route::prefix('admin')->group(function () {
@@ -23,12 +23,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::resource('products', 'ProductController')->only(['index', 'show']);
 Route::group([
     'name' => 'admin.',
     'prefix' => 'admin',
     'middleware' => 'auth'
 ], function () {
     Route::resource('users', 'UserController');
-    Route::resource('products', 'ProductController');
+    Route::resource('products', 'ProductController')->except([
+        'index', 'show'
+    ]);
 });
