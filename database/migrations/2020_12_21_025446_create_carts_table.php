@@ -31,6 +31,10 @@ class CreateCartsTable extends Migration
      */
     public function down()
     {
+        Schema::table('carts', function (Blueprint $table) {
+            $table->dropForeign('carts_creator_id_foreign');
+            $table->dropColumn('creator_id');
+        });
         Schema::dropIfExists('carts');
     }
 }

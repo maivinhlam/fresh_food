@@ -12,6 +12,16 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'type_id', 'name', 'price', 'sell_price', 'amount', 'description', 'image',
+        'type_id',
+        'brand_id',
+        'name',
+        'price',
+        'sell_percen',
+        'amount',
+        'description',
+        'image_path',
+        'view_count',
+        'creator_id',
     ];
 }
+
