@@ -1,4 +1,4 @@
-@extends('front_end.layouts.main')
+@extends('front_end.layouts.common')
 
 @section('content')
 <!DOCTYPE html>
@@ -8,15 +8,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/basic.css">
-  <link rel="stylesheet" href="./css/category-product.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/basic.css">
+  <link rel="stylesheet" href="../css/category-product.css">
 </head>
 
 <body>
   <header></header>
   <div class="hero" id="hero">
-    <img src="./images/detail-product/Bg.png" style="width:100%">
+    <img src="../images/detail-product/Bg.png" style="width:100%">
     <div class="link">
       <a href="#"><i class="fas fa-home"></i>Trang chủ</a>
       <i class="fas fa-chevron-right" style="font-size: 0.7em;"></i>
@@ -44,7 +44,7 @@
         <div class="listProduct" id="listProduct">
           <a class="product" href="#">
             <div class="image">
-              <img src="./images/img-pro-03.png" alt="">
+              <img src="../images/img-pro-03.png" alt="">
             </div>
             <div class="content">
               <div class="title">Xà lách</div>
@@ -54,7 +54,7 @@
           </a>
           <a class="product" href="#">
             <div class="image">
-              <img src="./images/img-pro-11.png" alt="">
+              <img src="../images/img-pro-11.png" alt="">
             </div>
             <div class="content">
               <div class="title">Dẻ sường bò Úc</div>
@@ -64,7 +64,7 @@
           </a>
           <a class="product" href="#">
             <div class="image">
-              <img src="./images/img-pro-05.png" alt="">
+              <img src="../images/img-pro-05.png" alt="">
             </div>
             <div class="content">
               <div class="title">Nho đen Mỹ</div>
@@ -74,7 +74,7 @@
           </a>
           <a class="product" href="#">
             <div class="image">
-              <img src="./images/img-pro-12.png" alt="">
+              <img src="../images/img-pro-12.png" alt="">
             </div>
             <div class="content">
               <div class="title">Ngao Trắng</div>
@@ -85,7 +85,7 @@
 
           <a class="product" href="#">
             <div class="image">
-              <img src="./images/img-pro-03.png" alt="">
+              <img src="../images/img-pro-03.png" alt="">
             </div>
             <div class="content">
               <div class="title">Xà lách</div>
@@ -95,7 +95,7 @@
           </a>
           <a class="product" href="#">
             <div class="image">
-              <img src="./images/img-pro-11.png" alt="">
+              <img src="../images/img-pro-11.png" alt="">
             </div>
             <div class="content">
               <div class="title">Dẻ sường bò Úc</div>
@@ -105,7 +105,7 @@
           </a>
           <a class="product" href="#">
             <div class="image">
-              <img src="./images/img-pro-05.png" alt="">
+              <img src="../images/img-pro-05.png" alt="">
             </div>
             <div class="content">
               <div class="title">Nho đen Mỹ</div>
@@ -115,7 +115,7 @@
           </a>
           <a class="product" href="#">
             <div class="image">
-              <img src="./images/img-pro-12.png" alt="">
+              <img src="../images/img-pro-12.png" alt="">
             </div>
             <div class="content">
               <div class="title">Ngao Trắng</div>
@@ -126,7 +126,7 @@
 
           <a class="product" href="#">
             <div class="image">
-              <img src="./images/img-pro-03.png" alt="">
+              <img src="../images/img-pro-03.png" alt="">
             </div>
             <div class="content">
               <div class="title">Xà lách</div>
@@ -136,7 +136,7 @@
           </a>
           <a class="product" href="#">
             <div class="image">
-              <img src="./images/img-pro-11.png" alt="">
+              <img src="../images/img-pro-11.png" alt="">
             </div>
             <div class="content">
               <div class="title">Dẻ sường bò Úc</div>
@@ -146,7 +146,7 @@
           </a>
           <a class="product" href="#">
             <div class="image">
-              <img src="./images/img-pro-05.png" alt="">
+              <img src="../images/img-pro-05.png" alt="">
             </div>
             <div class="content">
               <div class="title">Nho đen Mỹ</div>
@@ -156,7 +156,7 @@
           </a>
           <a class="product" href="#">
             <div class="image">
-              <img src="./images/img-pro-12.png" alt="">
+              <img src="../images/img-pro-12.png" alt="">
             </div>
             <div class="content">
               <div class="title">Ngao Trắng</div>

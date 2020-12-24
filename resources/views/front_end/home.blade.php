@@ -1,4 +1,4 @@
-@extends('front_end.layouts.main')
+@extends('front_end.layouts.common')
 
 @section('content')
 <div class="hero">

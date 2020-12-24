@@ -13,8 +13,16 @@
 
 Route::get('/', function () {
     return view('front_end.home');
-});
+})->name('home');
 
+Route::get('/admin', function () {
+    return view('admin.admin');
+} )->name('admin');
+
+Route::get('/logout', function () {
+    Auth::logout();
+    return view('admin.admin');
+} )->name('logout');
 // Route::prefix('admin')->group(function () {
 //     Route::resource('users', 'UserController');
 //     Route::resource('products', 'ProductController');
@@ -22,15 +30,19 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('products', 'ProductController')->only(['index', 'show']);
+// Route::get('/home', 'HomeController@index')->name('home');
+Route::group([
+    'name' => 'user.',
+], function () {
+    Route::resource('users', 'UserController');
+    Route::resource('products', 'ProductController')->only(['index', 'show']);
+});
 Route::group([
     'name' => 'admin.',
     'prefix' => 'admin',
     'middleware' => 'auth'
 ], function () {
     Route::resource('users', 'UserController');
-    Route::resource('products', 'ProductController')->except([
-        'index', 'show'
-    ]);
+    Route::resource('products', 'ProductController');
 });
+?>
