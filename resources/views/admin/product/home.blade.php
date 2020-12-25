@@ -294,7 +294,7 @@
 
                         <div class="form-group col-md-6">
                             <label for="sell_percen" class="control-label">Sell Percen:</label>
-                            <input type="range" class="form-control mousewheel_increment" id="sell_percen" name="sell_percen" min="0" max="100" step="1">
+                            <input type="number" class="form-control mousewheel_increment" id="sell_percen" name="sell_percen" min="0" max="100" step="1">
                         </div>
                     </div>
                     <div class="form-group">
@@ -370,10 +370,11 @@
             modal.find('.modal-body #view_count').val(view_count);
 
             $('#formProduct').attr('action', url);
-
+            $('.modal-header').addClass('bg-info').removeClass('bg-success');
             var methodPUT = "<input type='hidden' name='_method' value='PUT' id='methodPUT'>";
             $('#formProduct').append(methodPUT);
         } else {
+            $('.modal-header').addClass('bg-success').removeClass('bg-info');
             var title = button.data('title');
             var modal = $(this);
             modal.find('.modal-title').text(title);
