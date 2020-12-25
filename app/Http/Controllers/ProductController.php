@@ -28,14 +28,13 @@ class ProductController extends Controller
         $products = Product::paginate($perpage);
         $title = 'Admin | Products';
         return view('admin.product.home',
-                [
-                    'products'      => $products,
-                    'title'         => $title,
-                    'producrtypes'  => $producrtypes,
-                    'brands'        => $brands
-                ]
-
-            );
+        [
+            'products'      => $products,
+            'title'         => $title,
+            'producrtypes'  => $producrtypes,
+            'brands'        => $brands
+        ]
+        );
     }
 
     /**
@@ -68,7 +67,7 @@ class ProductController extends Controller
         $product->view_count = 0;
         $product->creator_id = Auth::user()->id;
         $product->save();
-        return back();
+        return redirect()->back()->with('success', 'Create success');
     }
 
     /**
@@ -128,6 +127,6 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return back();
+        return redirect()->back()->with('success', 'Delete success');
     }
 }

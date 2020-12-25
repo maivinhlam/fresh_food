@@ -38,11 +38,30 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('product_types.index') }}" class="nav-link ">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Product Types</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('products.index') }}" class="nav-link ">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Products</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('roles.index') }}" class="nav-link ">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Roles</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('brands.index') }}" class="nav-link ">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Brands</p>
+                            </a>
+                        </li>
+
                         <li class="nav-item">
                             <a href="{{ route('users.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>

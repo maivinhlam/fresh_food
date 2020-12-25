@@ -1,36 +1,6 @@
 @extends('admin.layouts.common')
 @section('myCSS')
-<style>
-    .swal2-icon.swal2-warning {
-        border-color: #facea8;
-        color: #f8bb86;
-    }
 
-    .swal2-icon {
-        position: relative;
-        box-sizing: content-box;
-        justify-content: center;
-        width: 5em;
-        height: 5em;
-        margin: 1.25em auto 1.875em;
-        border: .25em solid transparent;
-        border-radius: 50%;
-        font-family: inherit;
-        line-height: 5em;
-        cursor: default;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-
-    .swal2-icon .swal2-icon-content {
-        display: flex;
-        align-items: center;
-        font-size: 3.75em;
-    }
-
-</style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 @endsection
 @section('content')
@@ -40,7 +10,7 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Product</h3>
+            <h3 class="card-title">Brands</h3>
 
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -67,12 +37,12 @@
                 <div class="col-md-6">
                     <div class="float-right">
                         <button type="button" href="#" title="add new user" data-type="create" class="btn btn-success show_modal_form" data-toggle="modal"
-                             data-target="#modalEdit" data-title="Create Product" data-url="{{ route('products.store')}}" >
+                             data-target="#modalEdit" data-title="Create" data-url="{{ route('brands.store')}}" >
                             <i class="fa fa-plus-circle"></i>
                             Create
                         </button>
 
-                        <a href="{{route('products.index')}}" title="refresh table for users" class="btn btn-primary" data-trigger-pjax="1" data-pjax-target="#user-grid">
+                        <a href="{{route('brands.index')}}" title="refresh table for users" class="btn btn-primary" data-trigger-pjax="1" data-pjax-target="#user-grid">
                             <i class="fa fa-refresh"></i>
                             Refresh
                         </a>
@@ -108,78 +78,55 @@
                 <thead>
                     <tr>
                         <th scope="col" style="width: 1%"></th>
-                        <th scope="col" style="width: 20%">
-                            name
+                        <th scope="col" style="width: 19%">
+                            Name
                         </th>
-                        <th scope="col" style="width: 10%">
-                            price
-                        </th>
-
                         <th scope="col" style="width: 30%">
-                            description
+                            Description
                         </th>
-                        <th scope="col" style="width: 9%">
-                            Image
+
+                        <th scope="col" style="width: 15%">
+                            Image Path
+                        </th>
+                        <th scope="col" style="width: 5%">
+                            Product Count
                         </th>
                         <th scope="col" style="width: 10%">
+                            Creator Id
+                        </th>
+                        <th scope="col" style="width: 20%">
+                        </th>
 
-                        </th>
-                        <th scope="col" style="width: 7%">
-                        </th>
-                        <th scope="col" style="width: 13%">
-                        </th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($products as $product)
+                    @foreach($brands as $brand)
                         <tr>
                             <th scope="row" class="p-1 d-flex justify-content-center align-items-center">
                                 <?php
                                 $page = isset($_GET['page']) ? $_GET['page'] : 1;
                                 $perPage = isset($_GET['perPage']) ? $_GET['perPage'] : 1;
                                 ?>
-                                {{ (($page -1) * count($products)) + ($loop->index + 1) }}
+                                {{ (($page -1) * count($brands)) + ($loop->index + 1) }}
                             </th>
                             <td>
                                 <a href="#">
-                                    {{ $product->name }}
+                                    {{ $brand->name }}
                                 </a>
-                                <br />
-                                <small>
-                                    <i>Created: {{ $product->created_at }}</i>
-                                    <br>
-                                    <i>Creator Id: {{ $product->creator_id }}</i>
-                                </small>
                             </td>
                             <td>
-                                <small>
-                                    Price: {{ number_format($product->price, 0, ',', '.' ) }} đ
-                                    <br>
-                                    Sell Percen: {{ $product->sell_percen }}%
-                                </small>
+                                {{ $brand->description }}
                             </td>
                             <td class="" >
-                                {{ $product->description }}
+                                <img src="{{ $brand->image_path }}" alt="{{ $brand->name }}" height="80px">
                             </td>
                             <td class="">
-                                <img src="{{ $product->image_path }}" alt="{{ $product->name }}" height="80px">
+                                {{ $brand->product_count }}
                             </td>
                             <td class="">
-                                <small>
-                                    Amount: {{ number_format($product->amount, 0, ',', '.') }}
-
-                                    <br>
-                                    View Count: {{ number_format($product->view_count, 0, ',', '.') }}
-                                </small>
+                                {{ $brand->creator_id }}
                             </td>
-                            <td>
-                                <small>
-                                    Type: {{ number_format($product->type_id) }}
 
-                                    <br>
-                                    Brand: {{ number_format($product->brand_id) }}
-                                </small>
-                            </td>
                             <td class="project-actions p-0 text-center">
                                 <div class="">
                                     {{-- <a class="btn btn-primary btn-sm" href="#">
@@ -188,24 +135,19 @@
                                         View
                                     </a> --}}
                                     <button type="button" class="btn btn-info btn-sm mb-1" data-type="edit" data-toggle="modal" data-target="#modalEdit"
-                                        data-title="Edit Product"
-                                        data-type_id="{{ $product->type_id }}"
-                                        data-brand_id="{{ $product->brand_id }}"
-                                        data-name="{{ $product->name }}"
-                                        data-price="{{ $product->price }}"
-                                        data-sell_percen="{{ $product->sell_percen }}"
-                                        data-amount="{{ $product->amount }}"
-                                        data-description="{{ $product->description }}"
-                                        data-image_path="{{ $product->image_path }}"
-                                        data-view_count="{{ $product->view_count }}"
-                                        data-url="{{ route('products.update', $product->id) }}"
+                                        data-title="Edit"
+                                        data-name="{{ $brand->name }}"
+                                        data-description="{{ $brand->description }}"
+                                        data-image_path="{{ $brand->image_path }}"
+
+                                        data-url="{{ route('brands.update', $brand->id) }}"
                                         >
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Edit
                                     </button>
-                                    <button id="btn_delete" type="button" class="btn btn-danger btn-sm mb-1" data-toggle="modal" data-target="#modalDelete" data-title="Delete Product"
-                                        data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-url="{{ route('products.destroy', $product->id) }}">
+                                    <button id="btn_delete" type="button" class="btn btn-danger btn-sm mb-1" data-toggle="modal" data-target="#modalDelete" data-title="Delete"
+                                        data-id="{{ $brand->id }}" data-name="{{ $brand->name }}" data-url="{{ route('brands.destroy', $brand->id) }}">
                                         <i class="fas fa-trash">
                                         </i>
                                         Delete
@@ -217,7 +159,7 @@
                 </tbody>
             </table>
             <div class="d-flex justify-content-center">
-                {{ $products->onEachSide(1)->links() }}
+                {{ $brands->onEachSide(1)->links() }}
             </div>
         </div>
         <!-- /.card-body -->
@@ -225,68 +167,34 @@
     <!-- /.card -->
 
 </section>
+
 @include('admin.layouts.modal_delete')
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Edit Product</h4>
+                <h4 class="modal-title" id="exampleModalLabel">Edit</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <form method="POST" action="" id="formProduct">
                     {{-- @method('PUT') --}}
                     @csrf
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="type_id" class="control-label">Product Type:</label>
-                            <a href="{{route('product_types.index')}}" type="button" class="badge badge-primary"><i class="fa fa-plus-circle"></i>&nbsp; Add</a>
-                            <select class="form-control" id="product_type" name="type">
-                            @foreach($producrtypes as $producrtype)
-                                <option value="{{$producrtype->id}}">{{$producrtype->name}}</option>
-                            @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <label for="sell_percen" class="control-label">Brand:</label>
-                            <a href="{{route('brands.index')}}" type="button" class="badge badge-primary"><i class="fa fa-plus-circle"></i>&nbsp; Add</a>
-                            <select class="form-control" id="brand" name="brand">
-                            @foreach($brands as $brand)
-                                <option value="{{ $brand->id }}">{{$brand->name}}</option>
-                            @endforeach
-                              </select>
-                        </div>
-                    </div>
                     <div class="form-group">
-                        <label for="recipient-name" class="control-label">Product Name:</label>
-                        <input type="text" class="form-control" id="product_name" name="name">
+                        <label for="brand_name" class="control-label">Brand Name:</label>
+                        <input type="text" class="form-control" id="brand_name" name="name">
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="price" class="control-label">Price:</label>
-                            <input type="number" class="form-control" id="price" name="price" value="1" step="100000" min="0" max="1000000000">
-                        </div>
 
-                        <div class="form-group col-md-6">
-                            <label for="sell_percen" class="control-label">Sell Percen:</label>
-                            <input type="number" class="form-control mousewheel_increment" id="sell_percen" name="sell_percen" min="0" max="100" step="1">
-                        </div>
-                    </div>
                     <div class="form-group">
-                        <label for="amount" class="control-label">Amount:</label>
-                        <input type="number" class="form-control" id="amount" name="amount" value="1" step="10" min="0" max="1000000000">
-                    </div>
-                    <div class="form-group">
-                        <div class="form-group">
-                        <label for="description" class="control-label">Description:</label>
+                        <label for="price" class="control-label">Description:</label>
                         <textarea class="form-control" id="description" name="description"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="image_path" class="control-label">Image:</label>
-                        <input type="text" class="form-control" id="image_path" name="image_path">
+                        <label for="image_path" class="control-label">Image Path:</label>
+                        <input type="text" class="form-control mousewheel_increment" id="image_path" name="image_path">
                     </div>
+
                     <div class="float-right">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">
                             <i class="fas fa-times"></i>&nbsp; Close</button>
@@ -320,31 +228,19 @@
         var url = button.data('url');
         if(type == 'edit') {
             var title = button.data('title');
-            var type_id = button.data('type_id');
-            var brand_id = button.data('brand_id');
+
             var name = button.data('name');
-            var price = button.data('price');
-            var sell_percen = button.data('sell_percen');
-            var amount = button.data('amount');
             var description = button.data('description');
             var image_path = button.data('image_path');
-            var view_count = button.data('view_count');
-            var title = button.data('title');
 
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
             var modal = $(this);
-            modal.find('.modal-title').text(title);
-            modal.find('.modal-body #product_type').val(type_id);
-            modal.find('.modal-body #brand').val(brand_id);
-            modal.find('.modal-body #product_name').val(name);
-            modal.find('.modal-body #price').val(price);
-            modal.find('.modal-body #sell_percen').val(sell_percen);
 
-            modal.find('.modal-body #amount').val(amount);
+            modal.find('.modal-title').text(title);
+            modal.find('.modal-body #brand_name').val(name);
             modal.find('.modal-body #description').val(description);
             modal.find('.modal-body #image_path').val(image_path);
-            modal.find('.modal-body #view_count').val(view_count);
 
             $('#formProduct').attr('action', url);
             $('.modal-header').addClass('bg-info').removeClass('bg-success');

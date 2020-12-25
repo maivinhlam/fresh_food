@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BrandController extends Controller
 {
@@ -12,9 +13,23 @@ class BrandController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $perpage = 20;
+        if($request->perPage)
+        {
+            $perpage = $request->perPage;
+        }
+
+        $brands = Brand::paginate($perpage);
+        $title = 'Admin | Brand';
+
+        return view('admin.brands.home',
+            [
+                'title'         => $title,
+                'brands'  => $brands,
+            ]
+        );
     }
 
     /**
@@ -35,7 +50,14 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $brand = new Brand;
+        $brand->name = $request->name;
+        $brand->description = $request->description;
+        $brand->image_path = $request->image_path;
+        $brand->product_count = 0;
+        $brand->creator_id = Auth::user()->id;
+        $brand->save();
+        return back();
     }
 
     /**
@@ -69,7 +91,13 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
-        //
+        $brand->name = $request->name;
+        $brand->description = $request->description;
+        $brand->image_path = $request->image_path;
+        $brand->creator_id = Auth::user()->id;
+        $brand->save();
+
+        return redirect()->back()->with('success', 'Update success');
     }
 
     /**
@@ -80,6 +108,7 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        $brand->delete();
+        return back();
     }
 }

@@ -46,6 +46,9 @@ Route::group([
 ], function () {
     Route::resource('users', 'UserController');
     Route::resource('products', 'ProductController');
+    Route::resource('roles', 'RoleController');
+    Route::resource('brands', 'BrandController');
+    Route::resource('product_types', 'ProductTypeController');
 
 });
 ?>

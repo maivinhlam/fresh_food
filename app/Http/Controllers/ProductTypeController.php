@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ProductType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductTypeController extends Controller
 {
@@ -12,9 +13,23 @@ class ProductTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $perpage = 20;
+        if($request->perPage)
+        {
+            $perpage = $request->perPage;
+        }
+
+        $productTypes = ProductType::paginate($perpage);
+        $title = 'Admin | Product Type';
+
+        return view('admin.product_types.home',
+            [
+                'title'         => $title,
+                'productTypes'  => $productTypes,
+            ]
+        );
     }
 
     /**
@@ -35,7 +50,14 @@ class ProductTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product_type = new ProductType;
+        $product_type->name = $request->name;
+        $product_type->description = $request->description;
+        $product_type->image_path = $request->image_path;
+        $product_type->product_count = 0;
+        $product_type->creator_id = Auth::user()->id;
+        $product_type->save();
+        return back();
     }
 
     /**
@@ -69,7 +91,13 @@ class ProductTypeController extends Controller
      */
     public function update(Request $request, ProductType $productType)
     {
-        //
+        $productType->name = $request->name;
+        $productType->description = $request->description;
+        $productType->image_path = $request->image_path;
+        $productType->creator_id = Auth::user()->id;
+        $productType->save();
+
+        return redirect()->back()->with('success', 'Update success');
     }
 
     /**
@@ -80,6 +108,7 @@ class ProductTypeController extends Controller
      */
     public function destroy(ProductType $productType)
     {
-        //
+        $productType->delete();
+        return back();
     }
 }
