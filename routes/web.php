@@ -15,9 +15,11 @@ Route::get('/', function () {
     return view('front_end.home');
 })->name('home');
 
-Route::get('/admin', function () {
-    return view('admin.admin');
-} )->name('admin');
+Route::middleware('auth')->group(function () {
+    Route::get('/admin', function () {
+        return view('admin.admin');
+    })->name('admin');
+});
 
 Route::get('/logout', function () {
     Auth::logout();
@@ -44,5 +46,6 @@ Route::group([
 ], function () {
     Route::resource('users', 'UserController');
     Route::resource('products', 'ProductController');
+
 });
 ?>

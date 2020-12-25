@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductType;
+use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\New_;
 
 class ProductController extends Controller
 {
@@ -19,13 +23,16 @@ class ProductController extends Controller
         {
             $perpage = $request->perPage;
         }
-
+        $producrtypes = ProductType::all();
+        $brands = Brand::all();
         $products = Product::paginate($perpage);
         $title = 'Admin | Products';
         return view('admin.product.home',
                 [
-                    'products'  => $products,
-                    'title'     => $title
+                    'products'      => $products,
+                    'title'         => $title,
+                    'producrtypes'  => $producrtypes,
+                    'brands'        => $brands
                 ]
 
             );
@@ -49,7 +56,19 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product;
+        $product->type_id = $request->type;
+        $product->brand_id = $request->brand;
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->sell_percen = $request->sell_percen;
+        $product->amount = $request->amount;
+        $product->description = $request->description;
+        $product->image_path = $request->image_path;
+        $product->view_count = 0;
+        $product->creator_id = Auth::user()->id;
+        $product->save();
+        return back();
     }
 
     /**
@@ -83,7 +102,21 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->type_id = $request->type;
+        $product->brand_id = $request->brand;
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->sell_percen = $request->sell_percen;
+        $product->amount = $request->amount;
+        $product->description = $request->description;
+        $product->image_path = $request->image_path;
+
+        $status = $product->save();
+        return redirect()->back()->with('success', 'Update success');
+        // return Redirect::back()->withErrors(['msg', 'The Message']);
+        // @if($errors->any())
+        // <h4>{{$errors->first()}}</h4>
+        // @endif
     }
 
     /**
