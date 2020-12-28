@@ -55,6 +55,10 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|min:2'
+        ]);
+
         $product = new Product;
         $product->type_id = $request->type;
         $product->brand_id = $request->brand;

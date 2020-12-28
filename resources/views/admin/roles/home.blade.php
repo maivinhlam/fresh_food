@@ -10,7 +10,7 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Product</h3>
+            <h3 class="card-title">roles</h3>
 
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -37,12 +37,12 @@
                 <div class="col-md-6">
                     <div class="float-right">
                         <button type="button" href="#" title="add new user" data-type="create" class="btn btn-success show_modal_form" data-toggle="modal"
-                             data-target="#modalEdit" data-title="Create Product" data-url="{{ route('product_types.store')}}" >
+                             data-target="#modalEdit" data-title="Create" data-url="{{ route('roles.store')}}" >
                             <i class="fa fa-plus-circle"></i>
                             Create
                         </button>
 
-                        <a href="{{route('products.index')}}" title="refresh table for users" class="btn btn-primary" data-trigger-pjax="1" data-pjax-target="#user-grid">
+                        <a href="{{route('roles.index')}}" title="refresh table for users" class="btn btn-primary" data-trigger-pjax="1" data-pjax-target="#user-grid">
                             <i class="fa fa-refresh"></i>
                             Refresh
                         </a>
@@ -84,49 +84,29 @@
                         <th scope="col" style="width: 30%">
                             Description
                         </th>
-
-                        <th scope="col" style="width: 15%">
-                            Image Path
-                        </th>
-                        <th scope="col" style="width: 5%">
-                            Product Count
-                        </th>
-                        <th scope="col" style="width: 10%">
-                            Creator Id
-                        </th>
                         <th scope="col" style="width: 20%">
                         </th>
 
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($productTypes as $productType)
+                    @foreach($roles as $role)
                         <tr>
                             <th scope="row" class="p-1 d-flex justify-content-center align-items-center">
                                 <?php
                                 $page = isset($_GET['page']) ? $_GET['page'] : 1;
                                 $perPage = isset($_GET['perPage']) ? $_GET['perPage'] : 1;
                                 ?>
-                                {{ (($page -1) * count($productTypes)) + ($loop->index + 1) }}
+                                {{ (($page -1) * count($roles)) + ($loop->index + 1) }}
                             </th>
                             <td>
                                 <a href="#">
-                                    {{ $productType->name }}
+                                    {{ $role->name }}
                                 </a>
                             </td>
                             <td>
-                                {{ $productType->description }}
+                                {{ $role->description }}
                             </td>
-                            <td class="" >
-                                <img src="{{ $productType->image_path }}" alt="{{ $productType->name }}" height="80px">
-                            </td>
-                            <td class="">
-                                {{ $productType->product_count }}
-                            </td>
-                            <td class="">
-                                {{ $productType->creator_id }}
-                            </td>
-
                             <td class="project-actions p-0 text-center">
                                 <div class="">
                                     {{-- <a class="btn btn-primary btn-sm" href="#">
@@ -135,19 +115,17 @@
                                         View
                                     </a> --}}
                                     <button type="button" class="btn btn-info btn-sm mb-1" data-type="edit" data-toggle="modal" data-target="#modalEdit"
-                                        data-title="Edit Product"
-                                        data-name="{{ $productType->name }}"
-                                        data-description="{{ $productType->description }}"
-                                        data-image_path="{{ $productType->image_path }}"
-
-                                        data-url="{{ route('product_types.update', $productType->id) }}"
+                                        data-title="Edit"
+                                        data-name="{{ $role->name }}"
+                                        data-description="{{ $role->description }}"
+                                        data-url="{{ route('roles.update', $role->id) }}"
                                         >
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Edit
                                     </button>
-                                    <button id="btn_delete" type="button" class="btn btn-danger btn-sm mb-1" data-toggle="modal" data-target="#modalDelete" data-title="Delete Product"
-                                        data-id="{{ $productType->id }}" data-name="{{ $productType->name }}" data-url="{{ route('product_types.destroy', $productType->id) }}">
+                                    <button id="btn_delete" type="button" class="btn btn-danger btn-sm mb-1" data-toggle="modal" data-target="#modalDelete" data-title="Delete"
+                                        data-id="{{ $role->id }}" data-name="{{ $role->name }}" data-url="{{ route('roles.destroy', $role->id) }}">
                                         <i class="fas fa-trash">
                                         </i>
                                         Delete
@@ -159,7 +137,7 @@
                 </tbody>
             </table>
             <div class="d-flex justify-content-center">
-                {{ $productTypes->onEachSide(1)->links() }}
+                {{ $roles->onEachSide(1)->links() }}
             </div>
         </div>
         <!-- /.card-body -->
@@ -173,7 +151,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Edit Product</h4>
+                <h4 class="modal-title" id="exampleModalLabel">Edit</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
@@ -181,8 +159,8 @@
                     {{-- @method('PUT') --}}
                     @csrf
                     <div class="form-group">
-                        <label for="product_type_name" class="control-label">Product Type Name:</label>
-                        <input type="text" class="form-control" id="product_type_name" name="name">
+                        <label for="role_name" class="control-label">role Name:</label>
+                        <input type="text" class="form-control" id="role_name" name="name">
                     </div>
 
 
@@ -238,7 +216,7 @@
             var modal = $(this);
 
             modal.find('.modal-title').text(title);
-            modal.find('.modal-body #product_type_name').val(name);
+            modal.find('.modal-body #role_name').val(name);
             modal.find('.modal-body #description').val(description);
             modal.find('.modal-body #image_path').val(image_path);
 

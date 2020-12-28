@@ -25,10 +25,7 @@ Route::get('/logout', function () {
     Auth::logout();
     return view('admin.admin');
 } )->name('logout');
-// Route::prefix('admin')->group(function () {
-//     Route::resource('users', 'UserController');
-//     Route::resource('products', 'ProductController');
-// })->middleware('auth');
+
 
 Auth::routes();
 
@@ -43,12 +40,13 @@ Route::group([
     'name' => 'admin.',
     'prefix' => 'admin',
     'middleware' => 'auth'
-], function () {
-    Route::resource('users', 'UserController');
-    Route::resource('products', 'ProductController');
-    Route::resource('roles', 'RoleController');
-    Route::resource('brands', 'BrandController');
-    Route::resource('product_types', 'ProductTypeController');
+    ], function () {
+        Route::resource('users', 'UserController');
+        Route::resource('products', 'ProductController');
+        Route::resource('roles', 'RoleController');
+        Route::resource('brands', 'BrandController');
+        Route::resource('product_types', 'ProductTypeController');
 
-});
+    }
+);
 ?>
