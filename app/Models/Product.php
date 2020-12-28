@@ -14,6 +14,7 @@ class Product extends Model
     protected $fillable = [
         'type_id',
         'brand_id',
+        'supplier_id',
         'name',
         'price',
         'sell_percen',
@@ -24,4 +25,3 @@ class Product extends Model
         'creator_id',
     ];
 }
-

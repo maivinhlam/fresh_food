@@ -104,118 +104,114 @@
                 </div>
 
             </div>
-            <table class="table table-striped projects">
-                <thead>
-                    <tr>
-                        <th scope="col" style="width: 1%"></th>
-                        <th scope="col" style="width: 20%">
-                            name
-                        </th>
-                        <th scope="col" style="width: 10%">
-                            price
-                        </th>
-
-                        <th scope="col" style="width: 30%">
-                            description
-                        </th>
-                        <th scope="col" style="width: 9%">
-                            Image
-                        </th>
-                        <th scope="col" style="width: 10%">
-
-                        </th>
-                        <th scope="col" style="width: 7%">
-                        </th>
-                        <th scope="col" style="width: 13%">
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($products as $product)
+            <div class="table-responsive">
+                <table class="table table-striped projects" style="min-width: 1000px">
+                    <thead>
                         <tr>
-                            <th scope="row" class="p-1 d-flex justify-content-center align-items-center">
-                                <?php
-                                $page = isset($_GET['page']) ? $_GET['page'] : 1;
-                                $perPage = isset($_GET['perPage']) ? $_GET['perPage'] : 1;
-                                ?>
-                                {{ (($page -1) * count($products)) + ($loop->index + 1) }}
+                            <th scope="col" style="width: 1%"></th>
+                            <th scope="col" style="width: 20%">
+                                name
                             </th>
-                            <td>
-                                <a href="#">
-                                    {{ $product->name }}
-                                </a>
-                                <br />
-                                <small>
-                                    <i>Created: {{ $product->created_at }}</i>
-                                    <br>
-                                    <i>Creator Id: {{ $product->creator_id }}</i>
-                                </small>
-                            </td>
-                            <td>
-                                <small>
-                                    Price: {{ number_format($product->price, 0, ',', '.' ) }} đ
-                                    <br>
-                                    Sell Percen: {{ $product->sell_percen }}%
-                                </small>
-                            </td>
-                            <td class="" >
-                                {{ $product->description }}
-                            </td>
-                            <td class="">
-                                <img src="{{ $product->image_path }}" alt="{{ $product->name }}" height="80px">
-                            </td>
-                            <td class="">
-                                <small>
-                                    Amount: {{ number_format($product->amount, 0, ',', '.') }}
+                            <th scope="col" style="width: 10%">
+                                price
+                            </th>
 
-                                    <br>
-                                    View Count: {{ number_format($product->view_count, 0, ',', '.') }}
-                                </small>
-                            </td>
-                            <td>
-                                <small>
-                                    Type: {{ number_format($product->type_id) }}
+                            <th scope="col" style="width: 37%">
+                                description
+                            </th>
+                            <th scope="col" style="width: 9%">
+                                Image
+                            </th>
+                            <th scope="col" style="width: 10%">
 
-                                    <br>
-                                    Brand: {{ number_format($product->brand_id) }}
-                                </small>
-                            </td>
-                            <td class="project-actions p-0 text-center">
-                                <div class="">
-                                    {{-- <a class="btn btn-primary btn-sm" href="#">
-                                        <i class="fas fa-folder">
-                                        </i>
-                                        View
-                                    </a> --}}
-                                    <button type="button" class="btn btn-info btn-sm mb-1" data-type="edit" data-toggle="modal" data-target="#modalEdit"
-                                        data-title="Edit Product"
-                                        data-type_id="{{ $product->type_id }}"
-                                        data-brand_id="{{ $product->brand_id }}"
-                                        data-name="{{ $product->name }}"
-                                        data-price="{{ $product->price }}"
-                                        data-sell_percen="{{ $product->sell_percen }}"
-                                        data-amount="{{ $product->amount }}"
-                                        data-description="{{ $product->description }}"
-                                        data-image_path="{{ $product->image_path }}"
-                                        data-view_count="{{ $product->view_count }}"
-                                        data-url="{{ route('products.update', $product->id) }}"
-                                        >
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </button>
-                                    <button id="btn_delete" type="button" class="btn btn-danger btn-sm mb-1" data-toggle="modal" data-target="#modalDelete" data-title="Delete Product"
-                                        data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-url="{{ route('products.destroy', $product->id) }}">
-                                        <i class="fas fa-trash">
-                                        </i>
-                                        Delete
-                                        </a>
-                                </div>
-                            </td>
+                            </th>
+
+                            <th scope="col" style="width: 13%">
+                            </th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach($products as $product)
+                            <tr>
+                                <th scope="row" class="p-1 d-flex justify-content-center align-items-center">
+                                    <?php
+                                    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                                    $perPage = isset($_GET['perPage']) ? $_GET['perPage'] : 1;
+                                    ?>
+                                    {{ (($page -1) * count($products)) + ($loop->index + 1) }}
+                                </th>
+                                <td>
+                                    <a href="#">
+                                        {{ $product->name }}
+                                    </a>
+                                    <br />
+                                    <small>
+                                        <i>Created: {{ $product->created_at }}</i>
+                                        <br>
+                                        <i>Creator Id: {{ $product->creator_id }}</i>
+                                    </small>
+                                </td>
+                                <td>
+                                    <small>
+                                        Price: {{ number_format($product->price, 0, ',', '.' ) }} đ
+                                        <br>
+                                        Sell Percen: {{ $product->sell_percen }}%
+                                    </small>
+                                </td>
+                                <td class="" >
+                                    {{ $product->description }}
+                                </td>
+                                <td class="">
+                                    <img src="{{ $product->image_path }}" alt="{{ $product->name }}" height="80px">
+                                </td>
+                                <td class="">
+                                    <small>
+                                        Amount: {{ number_format($product->amount, 0, ',', '.') }}
+                                        <br>
+                                        View Count: {{ number_format($product->view_count, 0, ',', '.') }}
+                                        <br>
+                                        Type: {{ number_format($product->type_id) }}
+                                        <br>
+                                        Brand: {{ number_format($product->brand_id) }}
+                                    </small>
+                                </td>
+                                <td class="project-actions p-0 text-center">
+                                    <div class="">
+                                        {{-- <a class="btn btn-primary btn-sm" href="#">
+                                            <i class="fas fa-folder">
+                                            </i>
+                                            View
+                                        </a> --}}
+                                        <button type="button" class="btn btn-info btn-sm mb-1" data-type="edit" data-toggle="modal" data-target="#modalEdit"
+                                            data-title="Edit Product"
+                                            data-type_id="{{ $product->type_id }}"
+                                            data-brand_id="{{ $product->brand_id }}"
+                                            data-name="{{ $product->name }}"
+                                            data-price="{{ $product->price }}"
+                                            data-sell_percen="{{ $product->sell_percen }}"
+                                            data-amount="{{ $product->amount }}"
+                                            data-description="{{ $product->description }}"
+                                            data-image_path="{{ $product->image_path }}"
+                                            data-view_count="{{ $product->view_count }}"
+                                            data-url="{{ route('products.update', $product->id) }}"
+                                            >
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            Edit
+                                        </button>
+                                        <button id="btn_delete" type="button" class="btn btn-danger btn-sm mb-1" data-toggle="modal" data-target="#modalDelete" data-title="Delete Product"
+                                            data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-url="{{ route('products.destroy', $product->id) }}">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Delete
+                                            </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
             <div class="d-flex justify-content-center">
                 {{ $products->onEachSide(1)->links() }}
             </div>

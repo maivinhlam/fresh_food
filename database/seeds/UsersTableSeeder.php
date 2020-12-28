@@ -19,14 +19,11 @@ class UsersTableSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'role_id' => 1,
-            'password' => bcrypt('admin'),
+            'password' => bcrypt('12312310'),
             'phone' => '0123456789',
-            'avatar' => 'none',
-            'address' => 'admin',
             'remember_token' => '',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
     }
 }
-

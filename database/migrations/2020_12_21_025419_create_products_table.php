@@ -19,6 +19,8 @@ class CreateProductsTable extends Migration
             $table->foreign('type_id')->references('id')->on('product_types');
             $table->unsignedBigInteger('brand_id');
             $table->foreign('brand_id')->references('id')->on('brands');
+            $table->unsignedBigInteger('supplier_id');
+            $table->foreign('supplier_id')->references('id')->on('suppliers');
             $table->string('name');
             $table->decimal('price', 10, 0);
             $table->tinyInteger('sell_percen');
@@ -48,6 +50,9 @@ class CreateProductsTable extends Migration
 
             $table->dropForeign('products_brand_id_foreign');
             $table->dropColumn('brand_id');
+
+            $table->dropForeign('products_supplier_id_foreign');
+            $table->dropColumn('supplier_id');
         });
         Schema::dropIfExists('products');
     }

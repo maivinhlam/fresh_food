@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ProductType;
 use App\Models\Brand;
 use App\Models\User;
-
+use App\Models\Supplier;
 class ProductsTableSeeder extends Seeder
 {
     /**
@@ -23,6 +23,7 @@ class ProductsTableSeeder extends Seeder
             DB::table('products')->insert([
                 'type_id' => ProductType::query()->select('id')->get()->random()->id,
                 'brand_id' => Brand::query()->select('id')->get()->random()->id,
+                'supplier_id' => Supplier::query()->select('id')->get()->random()->id,
                 'name' => $faker->name,
                 'price' => $faker->numerify('#####000'),
                 'sell_percen' => $faker->numberBetween(2, 55),

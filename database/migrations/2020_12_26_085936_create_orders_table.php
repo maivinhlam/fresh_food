@@ -15,6 +15,10 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->decimal('total_money', 10, 0);
+            $table->text('status');
             $table->timestamps();
         });
     }
@@ -26,6 +30,10 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropForeign('carts_customer_id_foreign');
+            $table->dropColumn('customer_id');
+        });
         Schema::dropIfExists('orders');
     }
 }

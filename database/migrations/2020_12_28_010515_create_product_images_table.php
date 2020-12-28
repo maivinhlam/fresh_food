@@ -15,6 +15,9 @@ class CreateProductImagesTable extends Migration
     {
         Schema::create('product_images', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products');
+            $table->string('link');
             $table->timestamps();
         });
     }
@@ -26,6 +29,10 @@ class CreateProductImagesTable extends Migration
      */
     public function down()
     {
+        Schema::table('product_images', function (Blueprint $table) {
+            $table->dropForeign('carts_product_id_foreign');
+            $table->dropColumn('product_id');
+        });
         Schema::dropIfExists('product_images');
     }
 }
