@@ -162,7 +162,7 @@
                                     {{ $product->description }}
                                 </td>
                                 <td class="">
-                                    <img src="{{ $product->image_path }}" alt="{{ $product->name }}" height="80px">
+                                    <img src="/{{ $product->image_path }}" alt="{{ $product->image_path }}" height="80px">
                                 </td>
                                 <td class="">
                                     <small>
@@ -230,7 +230,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="" id="formProduct">
+                <form method="POST" action="" id="formProduct"  enctype="multipart/form-data">
                     {{-- @method('PUT') --}}
                     @csrf
                     <div class="form-row">
@@ -280,8 +280,12 @@
                         <textarea class="form-control" id="description" name="description"></textarea>
                     </div>
                     <div class="form-group">
+                        <label for="image_link" class="control-label">Image:</label>
+                        <input type="text" class="form-control" id="image_link" name="image_link">
+                    </div>
+                    <div class="form-group">
                         <label for="image_path" class="control-label">Image:</label>
-                        <input type="text" class="form-control" id="image_path" name="image_path">
+                        <input type="file" class="form-control" id="image_path" name="image_path">
                     </div>
                     <div class="float-right">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">
@@ -339,7 +343,7 @@
 
             modal.find('.modal-body #amount').val(amount);
             modal.find('.modal-body #description').val(description);
-            modal.find('.modal-body #image_path').val(image_path);
+            modal.find('.modal-body #image_link').val(image_path);
             modal.find('.modal-body #view_count').val(view_count);
 
             $('#formProduct').attr('action', url);

@@ -8,6 +8,7 @@ use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Expr\New_;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -70,6 +71,18 @@ class ProductController extends Controller
         $product->image_path = $request->image_path;
         $product->view_count = 0;
         $product->creator_id = Auth::user()->id;
+
+        if ($request->hasFile('image_path')) {
+            $this->validate($request, [
+                'image' => 'mimes:jpeg,jpg,png,gif|required|max:10000'
+            ]);
+
+            $file = $request->file('image_path');
+            $name = time().'.'.$file->getClientOriginalExtension();
+            $path = $file->move('images/products', $name);
+            $product->image_path = $path;
+        }
+
         $product->save();
 
         $producttype = ProductType::find($request->type);
@@ -118,7 +131,13 @@ class ProductController extends Controller
         $product->sell_percen = $request->sell_percen;
         $product->amount = $request->amount;
         $product->description = $request->description;
-        $product->image_path = $request->image_path;
+        $product->image_path = $request->image_link;
+        if ($request->hasFile('image_path')) {
+            $file = $request->file('image_path');
+            $name = time().'.'.$file->getClientOriginalExtension();
+            $path = $file->move('images/products', $name);
+            $product->image_path = $path;
+        }
 
         $status = $product->save();
         return redirect()->back()->with('success', 'Update success');
@@ -136,6 +155,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        File::delete($product->image_path);
         $product->delete();
         return redirect()->back()->with('success', 'Delete success');
     }

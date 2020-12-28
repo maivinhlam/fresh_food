@@ -17,6 +17,8 @@ class CreateSlidesTable extends Migration
             $table->bigIncrements('id');
             $table->string('link');
             $table->string('image');
+            $table->unsignedBigInteger('creator_id');
+            $table->foreign('creator_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -28,6 +30,10 @@ class CreateSlidesTable extends Migration
      */
     public function down()
     {
+        Schema::table('slides', function (Blueprint $table) {
+            $table->dropForeign('products_creator_id_foreign');
+            $table->dropColumn('creator_id');
+        });
         Schema::dropIfExists('slides');
     }
 }

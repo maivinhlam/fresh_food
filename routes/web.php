@@ -46,7 +46,7 @@ Route::group([
         Route::resource('roles', 'RoleController');
         Route::resource('brands', 'BrandController');
         Route::resource('product_types', 'ProductTypeController');
-
+        Route::resource('slides', 'SlideController');
     }
 );
 ?>

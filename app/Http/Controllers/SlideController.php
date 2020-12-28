@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Slide;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 class SlideController extends Controller
 {
     /**
@@ -12,9 +13,23 @@ class SlideController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $perpage = 20;
+        if($request->perPage)
+        {
+            $perpage = $request->perPage;
+        }
+
+        $slides = Slide::paginate($perpage);
+        $title = 'Admin | Slide';
+
+        return view('admin.slides.home',
+            [
+                'title'     => $title,
+                'slides'    => $slides,
+            ]
+        );
     }
 
     /**
@@ -35,7 +50,20 @@ class SlideController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $slide = new Slide;
+        $slide->link = $request->link ? $request->link : "none";
+        $slide->image = $request->image_link ? $request->image_link : "none";
+        $slide->creator_id = Auth::user()->id;
+
+        if ($request->hasFile('image_path')) {
+            $file = $request->file('image_path');
+            $name = time().'.'.$file->getClientOriginalExtension();
+            $path = $file->move('images/slides', $name);
+            $slide->image = $path;
+        }
+
+        $slide->save();
+        return redirect()->back()->with('success', 'Create success');
     }
 
     /**
@@ -80,6 +108,8 @@ class SlideController extends Controller
      */
     public function destroy(Slide $slide)
     {
-        //
+        File::delete($slide->image);
+        $slide->delete();
+        return redirect()->back()->with('success', 'Delete success');
     }
 }
