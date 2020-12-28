@@ -71,6 +71,12 @@ class ProductController extends Controller
         $product->view_count = 0;
         $product->creator_id = Auth::user()->id;
         $product->save();
+
+        $producttype = ProductType::find($request->type);
+        $producttype->increment('product_count');
+        $brand = Brand::find($request->brand);
+        $brand->increment('product_count');
+
         return redirect()->back()->with('success', 'Create success');
     }
 
