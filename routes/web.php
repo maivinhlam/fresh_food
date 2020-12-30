@@ -13,7 +13,7 @@
 
 Route::get('/', 'PageController@index')->name('home');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('check.admin')->group(function () {
     Route::get('/admin', function () {
         return view('admin.admin');
     })->name('admin');
@@ -37,7 +37,7 @@ Route::group([
 Route::group([
     'name' => 'admin.',
     'prefix' => 'admin',
-    'middleware' => 'auth'
+    'middleware' => 'check.admin'
     ], function () {
         Route::resource('users', 'UserController');
         Route::resource('products', 'ProductController');
