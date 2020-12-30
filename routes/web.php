@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('front_end.home');
-})->name('home');
+Route::get('/', 'PageController@index')->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::get('/admin', function () {

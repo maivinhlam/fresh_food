@@ -6,7 +6,7 @@
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
@@ -32,44 +32,44 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('admin') }}" class="nav-link">
+                            <a href="{{ route('admin') }}" class="nav-link active" data-content-target="Admin">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Admin Main Page</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('product_types.index') }}" class="nav-link ">
+                            <a href="{{ route('product_types.index') }}" class="nav-link" data-content-target="Product Types">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Product Types</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('products.index') }}" class="nav-link ">
+                            <a href="{{ route('products.index') }}" class="nav-link" data-content-target="Products">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Products</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('slides.index') }}" class="nav-link ">
+                            <a href="{{ route('slides.index') }}" class="nav-link" data-content-target="Slides">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Slides</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('roles.index') }}" class="nav-link ">
+                            <a href="{{ route('roles.index') }}" class="nav-link" data-content-target="Roles">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Roles</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('brands.index') }}" class="nav-link ">
+                            <a href="{{ route('brands.index') }}" class="nav-link" data-content-target="Brands">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Brands</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ route('users.index') }}" class="nav-link">
+                            <a href="{{ route('users.index') }}" class="nav-link" data-content-target="Users">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Users</p>
                             </a>

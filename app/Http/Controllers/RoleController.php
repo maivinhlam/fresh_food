@@ -21,7 +21,7 @@ class RoleController extends Controller
         }
 
         $roles = Role::paginate($perpage);
-        $title = 'Admin | Roles';
+        $title = 'Roles';
 
         return view('admin.roles.home',
             [

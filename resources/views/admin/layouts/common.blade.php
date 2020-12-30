@@ -283,6 +283,22 @@
     <!-- AdminLTE for demo purposes -->
     <script src="../js/demo.js"></script>
     @yield('myscript')
+
+    <script>
+        $(document).ready(function () {
+            var sidebar = $('#sidebar');
+            var title = this.title;
+            var listLink = sidebar.find('.nav-treeview a');
+            var link;
+            for (link of listLink) {
+                var dataContent = link.getAttribute("data-content-target");
+                link.classList.remove("active");
+                if(dataContent == this.title) {
+                    link.classList.add("active");
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Slide;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -11,9 +12,23 @@ class PageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $perpage = 20;
+        if($request->perPage)
+        {
+            $perpage = $request->perPage;
+        }
+        $slides = Slide::all();
+        $products = Product::paginate(5);
+        $title = 'Fresh Food';
+        return view('front_end.home',
+        [
+            'products'      => $products,
+            'title'         => $title,
+            'slides'        => $slides,
+        ]
+        );
     }
 
     /**

@@ -27,7 +27,7 @@ class ProductController extends Controller
         $producrtypes = ProductType::all();
         $brands = Brand::all();
         $products = Product::paginate($perpage);
-        $title = 'Admin | Products';
+        $title = 'Products';
         return view('admin.product.home',
         [
             'products'      => $products,

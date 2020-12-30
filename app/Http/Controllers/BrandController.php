@@ -22,7 +22,7 @@ class BrandController extends Controller
         }
 
         $brands = Brand::paginate($perpage);
-        $title = 'Admin | Brand';
+        $title = 'Brands';
 
         return view('admin.brands.home',
             [

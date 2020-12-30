@@ -22,7 +22,7 @@ class ProductTypeController extends Controller
         }
 
         $productTypes = ProductType::paginate($perpage);
-        $title = 'Admin | Product Type';
+        $title = 'Product Types';
 
         return view('admin.product_types.home',
             [

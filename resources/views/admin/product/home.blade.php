@@ -162,7 +162,7 @@
                                     {{ $product->description }}
                                 </td>
                                 <td class="">
-                                    <img src="/{{ $product->image_path }}" alt="{{ $product->image_path }}" height="80px">
+                                    <img src="/{{ $product->image_path }}" alt="{{ $product->name }}" height="80px">
                                 </td>
                                 <td class="">
                                     <small>
@@ -262,7 +262,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="price" class="control-label">Price:</label>
-                            <input type="number" class="form-control" id="price" name="price" value="1" step="100000" min="0" max="1000000000">
+                            <input type="number" class="form-control" id="price" name="price" value="1" step="1000" min="0" max="1000000000">
                         </div>
 
                         <div class="form-group col-md-6">
@@ -272,7 +272,7 @@
                     </div>
                     <div class="form-group">
                         <label for="amount" class="control-label">Amount:</label>
-                        <input type="number" class="form-control" id="amount" name="amount" value="1" step="10" min="0" max="1000000000">
+                        <input type="number" class="form-control" id="amount" name="amount" value="1" step="1" min="0" max="1000000000">
                     </div>
                     <div class="form-group">
                         <div class="form-group">

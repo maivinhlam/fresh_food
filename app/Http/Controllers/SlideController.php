@@ -22,7 +22,7 @@ class SlideController extends Controller
         }
 
         $slides = Slide::paginate($perpage);
-        $title = 'Admin | Slide';
+        $title = 'Slides';
 
         return view('admin.slides.home',
             [
