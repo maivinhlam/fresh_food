@@ -27,6 +27,9 @@ class ProductController extends Controller
         $producrtypes = ProductType::all();
         $brands = Brand::all();
         $products = Product::paginate($perpage);
+        foreach ($products as $product) {
+            $product->brand_id = $product->brand->name;
+        }
         $title = 'Products';
         return view('admin.product.home',
         [
@@ -90,7 +93,7 @@ class ProductController extends Controller
         $brand = Brand::find($request->brand);
         $brand->increment('product_count');
 
-        return redirect()->back()->with('success', 'Create success');
+        return redirect()->back()->with('success', "Create $product->name success");
     }
 
     /**
@@ -140,7 +143,7 @@ class ProductController extends Controller
         }
 
         $status = $product->save();
-        return redirect()->back()->with('success', 'Update success');
+        return redirect()->back()->with('success', "Update $product->name success");
         // return Redirect::back()->withErrors(['msg', 'The Message']);
         // @if($errors->any())
         // <h4>{{$errors->first()}}</h4>
@@ -157,6 +160,6 @@ class ProductController extends Controller
     {
         File::delete($product->image_path);
         $product->delete();
-        return redirect()->back()->with('success', 'Delete success');
+        return redirect()->back()->with('success', "Delete $product->name success");
     }
 }

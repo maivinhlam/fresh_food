@@ -170,9 +170,9 @@
                                         <br>
                                         View Count: {{ number_format($product->view_count, 0, ',', '.') }}
                                         <br>
-                                        Type: {{ number_format($product->type_id) }}
+                                        Type: {{ $product->type_id }}
                                         <br>
-                                        Brand: {{ number_format($product->brand_id) }}
+                                        Brand: {{ $product->brand_id }}
                                     </small>
                                 </td>
                                 <td class="project-actions p-0 text-center">
