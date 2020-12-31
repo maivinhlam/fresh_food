@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-        $this->call(RolesTableSeeder::class);
+        $this->call(RolesAndPermissionSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(BrandsTableSeeder::class);
         $this->call(ProductTypesTableSeeder::class);
