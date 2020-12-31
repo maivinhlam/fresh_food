@@ -21,7 +21,7 @@ Route::middleware('check.admin')->group(function () {
 
 Route::get('/logout', function () {
     Auth::logout();
-
+    return redirect('login');
 } )->name('logout');
 
 
@@ -37,7 +37,7 @@ Route::group([
 Route::group([
     'name' => 'admin.',
     'prefix' => 'admin',
-    'middleware' => 'check.admin'
+    'middleware' => 'can:admin'
     ], function () {
         Route::resource('users', 'UserController');
         Route::resource('products', 'ProductController');
