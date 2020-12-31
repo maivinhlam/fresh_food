@@ -28,7 +28,8 @@ class ProductController extends Controller
         $brands = Brand::all();
         $products = Product::paginate($perpage);
         foreach ($products as $product) {
-            $product->brand_id = $product->brand->name;
+            $product->brand_name = $product->brand->name;
+            $product->type_name = $product->type->name;
         }
         $title = 'Products';
         return view('admin.product.home',
@@ -83,7 +84,7 @@ class ProductController extends Controller
             $file = $request->file('image_path');
             $name = time().'.'.$file->getClientOriginalExtension();
             $path = $file->move('images/products', $name);
-            $product->image_path = $path;
+            $product->image_path = '/'.$path;
         }
 
         $product->save();
@@ -136,10 +137,15 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->image_path = $request->image_link;
         if ($request->hasFile('image_path')) {
+            $this->validate($request, [
+                'image' => 'mimes:jpeg,jpg,png,gif|required|max:10000'
+            ]);
             $file = $request->file('image_path');
             $name = time().'.'.$file->getClientOriginalExtension();
             $path = $file->move('images/products', $name);
-            $product->image_path = $path;
+
+            File::delete($product->image_path);
+            $product->image_path = '/'.$path;
         }
 
         $status = $product->save();

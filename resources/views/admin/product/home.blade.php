@@ -162,7 +162,7 @@
                                     {{ $product->description }}
                                 </td>
                                 <td class="">
-                                    <img src="/{{ $product->image_path }}" alt="{{ $product->name }}" height="80px">
+                                    <img src="{{ $product->image_path }}" alt="{{ $product->name }}" height="80px">
                                 </td>
                                 <td class="">
                                     <small>
@@ -170,9 +170,9 @@
                                         <br>
                                         View Count: {{ number_format($product->view_count, 0, ',', '.') }}
                                         <br>
-                                        Type: {{ $product->type_id }}
+                                        Type: {{ $product->type_name }}
                                         <br>
-                                        Brand: {{ $product->brand_id }}
+                                        Brand: {{ $product->brand_name }}
                                     </small>
                                 </td>
                                 <td class="project-actions p-0 text-center">
