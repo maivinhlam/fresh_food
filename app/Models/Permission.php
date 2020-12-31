@@ -4,19 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cart extends Model
+class Permission extends Model
 {
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'user_id', 'session_id', 'product_id', 'amount',
+        'name', 'description'
     ];
 
-    public function product()
+    public function roles()
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Role::class);
     }
 }

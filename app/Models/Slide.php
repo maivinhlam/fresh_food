@@ -14,4 +14,9 @@ class Slide extends Model
     protected $fillable = [
         'link', 'image', 'creator_id',
     ];
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -24,4 +24,20 @@ class Product extends Model
         'view_count',
         'creator_id',
     ];
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function type()
+    {
+        return $this->belongsTo(ProductType::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
 }
