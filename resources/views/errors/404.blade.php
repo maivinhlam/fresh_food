@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>403 Unauthorized Access</title>
+  <title>AdminLTE 3 | 404 Page not found</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,18 +16,19 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body >
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
   <!-- Content Wrapper. Contains page content -->
-  <div>
-    <!-- Content Header (Page header) -->
+  <div class="">
 
     <!-- Main content -->
     <section class="content">
       <div class="error-page">
-        <h2 class="headline text-warning"> 403</h2>
+        <h2 class="headline text-warning"> 404</h2>
 
         <div class="error-content">
-          <h3><i class="fas fa-exclamation-triangle text-warning"></i> Oops! Unauthorized Access.</h3>
+          <h3><i class="fas fa-exclamation-triangle text-warning"></i> Oops! Page not found.</h3>
 
           <p>
             We could not find the page you were looking for.
@@ -55,10 +56,7 @@
   <!-- /.content-wrapper -->
 
 
-  <!-- Control Sidebar -->
-
-  <!-- /.control-sidebar -->
-
+</div>
 <!-- ./wrapper -->
 
 <!-- jQuery -->
