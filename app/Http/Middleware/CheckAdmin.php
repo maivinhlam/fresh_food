@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 use Closure;
 
 class CheckAdmin
@@ -18,7 +19,12 @@ class CheckAdmin
         if (Gate::allows('admin')) {
             return $next($request);
         } else{
-            return redirect('/');
+            if (Auth::check()) {
+                return redirect('/');
+            } else {
+                return redirect('login');
+            }
+
         }
 
     }

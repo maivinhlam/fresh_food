@@ -21,7 +21,7 @@ Route::middleware('check.admin')->group(function () {
 
 Route::get('/logout', function () {
     Auth::logout();
-    return view('admin.admin');
+
 } )->name('logout');
 
 
