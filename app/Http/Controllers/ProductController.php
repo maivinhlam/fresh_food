@@ -61,7 +61,8 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|min:2'
+             'name'     => 'required|min:20',
+
         ]);
 
         $product = new Product;
@@ -78,7 +79,7 @@ class ProductController extends Controller
 
         if ($request->hasFile('image_path')) {
             $this->validate($request, [
-                'image' => 'mimes:jpeg,jpg,png,gif|required|max:10000'
+                'file' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             ]);
 
             $file = $request->file('image_path');
@@ -87,14 +88,15 @@ class ProductController extends Controller
             $product->image_path = '/'.$path;
         }
 
-        $product->save();
+        $status = $product->save();
 
         $producttype = ProductType::find($request->type);
         $producttype->increment('product_count');
         $brand = Brand::find($request->brand);
         $brand->increment('product_count');
 
-        return redirect()->back()->with('success', "Create $product->name success");
+        return response()->json(['success'=>'Added new records.']);
+        //return redirect()->back()->with('success', "Create $product->name success");
     }
 
     /**
@@ -137,8 +139,9 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->image_path = $request->image_link;
         if ($request->hasFile('image_path')) {
+            echo "hasFile";
             $this->validate($request, [
-                'image' => 'mimes:jpeg,jpg,png,gif|required|max:10000'
+                'file' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             ]);
             $file = $request->file('image_path');
             $name = time().'.'.$file->getClientOriginalExtension();

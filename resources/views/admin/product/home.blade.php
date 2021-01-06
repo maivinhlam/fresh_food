@@ -225,6 +225,15 @@
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="modal-header">
                 <h4 class="modal-title" id="exampleModalLabel">Edit Product</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -285,17 +294,17 @@
                     </div>
                     <div class="form-group">
                         <label for="image_path" class="control-label">Image:</label>
-                        <input type="file" class="form-control" id="image_path" name="image_path">
+                        <input type="file" class="form-control-file border" id="image_path" name="image_path">
                     </div>
+
                     <div class="float-right">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">
                             <i class="fas fa-times"></i>&nbsp; Close</button>
-                        <button type="submit" class="btn btn-success">
+                        <button type="button" class="btn btn-success" id="btnSubmit">
                             <i class="far fa-save"></i>&nbsp; Save</button>
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 </div>
@@ -358,8 +367,63 @@
             $('#formProduct').attr('action', url);
             $('#formProduct').find('#methodPUT').val('POST');
         }
-    })
+    });
 
+    jQuery(document).ready(function() {
+        jQuery('#btnSubmit').click(function(e){
+        e.preventDefault();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var url = $('#formProduct').attr('action');
+        jQuery.ajax({
+            url: url,
+            method: 'post',
+            data: {
+                type_id: jQuery('#product_type').val(),
+                brand_id: jQuery('#brand').val(),
+                name: jQuery('#product_name').val(),
+                price: jQuery('#price').val(),
+                sell_percen: 0,
+                amount: jQuery('#amount').val(),
+                description: jQuery('#description').val(),
+                image_link: jQuery('#image_link').val(),
+                image_path: jQuery('#image_path').val(),
+
+            },
+            success: function(result){
+                if(result.errors)
+                {
+                    jQuery('.alert-danger').html('');
+
+                    jQuery.each(result.errors, function(key, value){
+                        jQuery('.alert-danger').show();
+                        jQuery('.alert-danger').append('<li>'+value+'</li>');
+                    });
+                }
+                else
+                {
+                    jQuery('.alert-danger').hide();
+                    $('#open').hide();
+                    $('#modalEdit').modal('hide');
+                }
+            },
+            error: function (err) {
+                if (err.status == 422) { // when status code is 422, it's a validation issue
+                    $.each(err.responseJSON.errors, function (i, error) {
+                        var el = $(document).find('[name="'+i+'"]');
+                        el.addClass('is-invalid');
+                        el.next().remove();
+                        el.after($('<span class="error invalid-feedback">'+error[0]+'</span>'));
+                    });
+                }
+            }
+            });
+
+        });
+    });
 
 
 </script>

@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" type="image/x-icon" href="https://via.placeholder.com/200x200.png/910000?text=L" />
     <title>{{ isset($title) ? $title : 'Admin' }}</title>
