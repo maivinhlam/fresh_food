@@ -50,4 +50,19 @@ class User extends Authenticatable
         return $this->belongsTo(User::class);
     }
 
+    public function hasPermission(Permission $permission)
+    {
+        return !! optional(optional($this->role)->permissions)->contains($permission);
+    }
+
+    public function isAdmin()
+    {
+        if($this->id === 1) {
+            return true;
+        }
+
+        if($this->role_id === 1) {
+            return true;
+        }
+    }
 }

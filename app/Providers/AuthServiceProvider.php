@@ -6,6 +6,8 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Illuminate\Support\Facades\Gate;
 
 use App\Models\User;
+use App\Models\Permission;
+
 use App\Policies\UserPolicy;
 class AuthServiceProvider extends ServiceProvider
 {
@@ -27,8 +29,22 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('admin', function ($user) {
-            return $user->role_id == 1;
+        Gate::before(function ($user) {
+            if($user->role->name === 'system_admin') {
+                return true;
+            }
         });
+
+        Gate::define('admin', function ($user) {
+            return $user->role->name === 'admin';
+        });
+
+        if(!$this->app->runningInConsole()) {
+            foreach (Permission::all() as $permission) {
+                Gate::define($permission->name, function ($user) use ($permission) {
+                    return $user->hasPermission($permission);
+                });
+            }
+        }
     }
 }

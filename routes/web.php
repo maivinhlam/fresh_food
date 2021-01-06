@@ -37,7 +37,7 @@ Route::group([
 Route::group([
     'name' => 'admin.',
     'prefix' => 'admin',
-    'middleware' => 'can:admin'
+    'middleware' => 'check.admin'
     ], function () {
         Route::resource('users', 'UserController');
         Route::resource('products', 'ProductController');
