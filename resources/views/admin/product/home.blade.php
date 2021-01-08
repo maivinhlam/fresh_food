@@ -300,7 +300,9 @@
                     <div class="float-right">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">
                             <i class="fas fa-times"></i>&nbsp; Close</button>
-                        <button type="button" class="btn btn-success" id="btnSubmit">
+                        <button type="button" class="btn btn-success" id="btnCreate">
+                            <i class="fa fa-plus-circle"></i>&nbsp; Create</button>
+                        <button type="submit" class="btn btn-success" id="btnSubmit">
                             <i class="far fa-save"></i>&nbsp; Save</button>
                     </div>
                 </form>
@@ -355,6 +357,9 @@
             modal.find('.modal-body #image_link').val(image_path);
             modal.find('.modal-body #view_count').val(view_count);
 
+            modal.find('#btnCreate').hide();
+            modal.find('#btnSubmit').show();
+
             $('#formProduct').attr('action', url);
             $('.modal-header').addClass('bg-info').removeClass('bg-success');
             var methodPUT = "<input type='hidden' name='_method' value='PUT' id='methodPUT'>";
@@ -366,11 +371,13 @@
             modal.find('.modal-title').text(title);
             $('#formProduct').attr('action', url);
             $('#formProduct').find('#methodPUT').val('POST');
+            modal.find('#btnSubmit').hide();
+            modal.find('#btnCreate').show();
         }
     });
 
     jQuery(document).ready(function() {
-        jQuery('#btnSubmit').click(function(e){
+        jQuery('#btnCreate').click(function(e){
         e.preventDefault();
         $.ajaxSetup({
             headers: {

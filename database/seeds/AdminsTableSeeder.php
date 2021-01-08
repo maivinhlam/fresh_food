@@ -29,7 +29,7 @@ class AdminsTableSeeder extends Seeder
                 'email' => 'admin@gmail.com',
                 'role_id' => 2,
                 'password' => bcrypt('12312310'),
-                'phone' => '0123456789',
+                'phone' => '0123456787',
                 'remember_token' => '',
                 'created_at' => now(),
                 'updated_at' => now()
@@ -41,7 +41,7 @@ class AdminsTableSeeder extends Seeder
                 'email' => 'editor@gmail.com',
                 'role_id' => 3,
                 'password' => bcrypt('12312310'),
-                'phone' => '0123456789',
+                'phone' => '0123456788',
                 'remember_token' => '',
                 'created_at' => now(),
                 'updated_at' => now()

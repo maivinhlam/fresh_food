@@ -17,12 +17,11 @@ class UsersTableSeeder extends Seeder
         $limit = 20;
         for ($i = 1; $i < $limit; $i++) {
             DB::table('users')->insert([
-                'id' => 1,
                 'name' => "user$i",
                 'email' => "user$i@gmail.com",
                 'role_id' => 4,
                 'password' => bcrypt('12312310'),
-                'phone' => '0123456789',
+                'phone' => "012345678$i",
                 'remember_token' => '',
                 'created_at' => now(),
                 'updated_at' => now(),

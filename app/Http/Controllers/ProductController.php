@@ -139,6 +139,8 @@ class ProductController extends Controller
         $product->amount = $request->amount;
         $product->description = $request->description;
         $product->image_path = $request->image_link;
+        $product->creator_id = Auth::guard('admin')->user()->id;
+
         if ($request->hasFile('image_path')) {
             echo "hasFile";
             $this->validate($request, [
