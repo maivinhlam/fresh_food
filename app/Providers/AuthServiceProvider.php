@@ -35,12 +35,6 @@ class AuthServiceProvider extends ServiceProvider
             }
         });
 
-        Gate::define('admin', function ($user) {
-            if($user->role->name === 'admin') {
-                return true;
-            }
-        });
-
         if(!$this->app->runningInConsole()) {
             foreach (Permission::all() as $permission) {
                 Gate::define($permission->name, function ($user) use ($permission) {
