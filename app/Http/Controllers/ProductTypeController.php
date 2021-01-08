@@ -55,7 +55,7 @@ class ProductTypeController extends Controller
         $product_type->description = $request->description;
         $product_type->image_path = $request->image_path;
         $product_type->product_count = 0;
-        $product_type->creator_id = Auth::user()->id;
+        $product_type->creator_id = Auth::guard('admin')->user()->id;
         $product_type->save();
         return back();
     }
@@ -94,7 +94,7 @@ class ProductTypeController extends Controller
         $productType->name = $request->name;
         $productType->description = $request->description;
         $productType->image_path = $request->image_path;
-        $productType->creator_id = Auth::user()->id;
+        $productType->creator_id = Auth::guard('admin')->user()->id;
         $productType->save();
 
         return redirect()->back()->with('success', 'Update success');

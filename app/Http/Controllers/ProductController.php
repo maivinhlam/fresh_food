@@ -75,7 +75,7 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->image_path = $request->image_path;
         $product->view_count = 0;
-        $product->creator_id = Auth::user()->id;
+        $product->creator_id = Auth::guard('admin')->user()->id;
 
         if ($request->hasFile('image_path')) {
             $this->validate($request, [

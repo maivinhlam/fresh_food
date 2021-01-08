@@ -53,7 +53,7 @@ class SlideController extends Controller
         $slide = new Slide;
         $slide->link = $request->link ? $request->link : "none";
         $slide->image = $request->image_link ? $request->image_link : "none";
-        $slide->creator_id = Auth::user()->id;
+        $slide->creator_id = Auth::guard('admin')->user()->id;
 
         if ($request->hasFile('image_path')) {
             $file = $request->file('image_path');

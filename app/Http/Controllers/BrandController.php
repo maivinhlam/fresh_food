@@ -55,7 +55,7 @@ class BrandController extends Controller
         $brand->description = $request->description;
         $brand->image_path = $request->image_path;
         $brand->product_count = 0;
-        $brand->creator_id = Auth::user()->id;
+        $brand->creator_id = Auth::guard('admin')->user()->id;
         $brand->save();
         return back();
     }
@@ -94,7 +94,7 @@ class BrandController extends Controller
         $brand->name = $request->name;
         $brand->description = $request->description;
         $brand->image_path = $request->image_path;
-        $brand->creator_id = Auth::user()->id;
+        $brand->creator_id = Auth::guard('admin')->user()->id;
         $brand->save();
 
         return redirect()->back()->with('success', 'Update success');
