@@ -10,6 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'PageController@index')->name('home');
 
@@ -19,21 +21,25 @@ Route::middleware('check.admin')->group(function () {
     })->name('admin');
 });
 
-Route::get('/logout', function () {
-    Auth::logout();
-    return redirect('login');
-} )->name('logout');
-
-
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
 Route::group([
     'name' => 'user.',
 ], function () {
     Route::resource('users', 'UserController');
     Route::resource('products', 'ProductController')->only(['index', 'show']);
 });
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
+    route::get('login', 'Admin\LoginController@showLoginForm')->name('login');
+    route::post('login', 'Admin\LoginController@login')->name('postlogin');
+    route::get('logout', 'Admin\LoginController@logout')->name('getlogout');
+    route::post('logout', 'Admin\LoginController@logout')->name('logout');
+
+    route::get('register', 'Admin\RegisterController@showRegistrationForm')->name('register');
+    route::post('register', 'Admin\RegisterController@register')->name('postregister');
+});
+
 Route::group([
     'name' => 'admin.',
     'prefix' => 'admin',
