@@ -37,7 +37,7 @@ class CreateRolesAndPermissionsTable extends Migration
         //     $table->timestamps();
         // });
 
-        Schema::create('permission_role', function (Blueprint $table) {
+        Schema::create('role_permission', function (Blueprint $table) {
             $table->unsignedInteger('permission_id');
             $table->unsignedInteger('role_id');
 

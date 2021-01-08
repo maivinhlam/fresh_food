@@ -44,19 +44,19 @@ class RolesAndPermissionSeeder extends Seeder
         ]);
 
         DB::table('permissions')->insert([
-            ['name' => 'review_post', 'description' => ''],
-            ['name' => 'update_post', 'description' => ''],
-            ['name' => 'delete_post', 'description' => ''],
-            ['name' => 'restore_post', 'description' => ''],
-            ['name' => 'force_delete_post', 'description' => ''],
+            ['name' => 'review_post', 'description' => '', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'update_post', 'description' => '', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'delete_post', 'description' => '', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'restore_post', 'description' => '', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'force_delete_post', 'description' => '', 'created_at' => now(), 'updated_at' => now()],
         ]);
 
-        DB::table('permission_role')->insert([
-            ['permission_id' => 1, 'role_id' => 3],
-            ['permission_id' => 2, 'role_id' => 3],
-            ['permission_id' => 3, 'role_id' => 3],
-            ['permission_id' => 4, 'role_id' => 3],
-            ['permission_id' => 5, 'role_id' => 3],
+        DB::table('role_permission')->insert([
+            ['permission_id' => 1, 'role_id' => 3, 'created_at' => now(), 'updated_at' => now()],
+            ['permission_id' => 2, 'role_id' => 3, 'created_at' => now(), 'updated_at' => now()],
+            ['permission_id' => 3, 'role_id' => 3, 'created_at' => now(), 'updated_at' => now()],
+            ['permission_id' => 4, 'role_id' => 3, 'created_at' => now(), 'updated_at' => now()],
+            ['permission_id' => 5, 'role_id' => 3, 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }
