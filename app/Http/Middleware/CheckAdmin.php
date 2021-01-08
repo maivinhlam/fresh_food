@@ -22,7 +22,7 @@ class CheckAdmin
         }
 
         if (Auth::guard('admin')->check()) {
-            if(Auth::guard('admin')->user()->isAdmin()){
+            if(Auth::guard('admin')->user()->isSystemAdmin()){
                 return $next($request);
             }
         }

@@ -56,9 +56,9 @@ class Admin extends Authenticatable
         return !! optional(optional($this->role)->permissions)->contains($permission);
     }
 
-    public function isAdmin()
+    public function isSystemAdmin()
     {
-        if($this->role->name === 'admin' || $this->role->name === 'system_admin' ) {
+        if($this->role->name === 'system_admin' ) {
             return true;
         }
     }
