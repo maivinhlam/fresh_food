@@ -30,6 +30,7 @@ class ProductController extends Controller
         foreach ($products as $product) {
             $product->brand_name = $product->brand->name;
             $product->type_name = $product->type->name;
+            $product->creator_name = $product->creator->name;
         }
         $title = 'Products';
         return view('admin.product.home',
