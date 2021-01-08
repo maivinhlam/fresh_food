@@ -16,16 +16,17 @@ class CheckAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (Gate::allows('admin')) {
+        $user = Auth::guard('admin')->user();
+        if (Gate::forUser($user)->allows('admin')) {
             return $next($request);
-        } else{
-            if (Auth::check()) {
-                return redirect('/');
-            } else {
-                return redirect('login');
-            }
-
         }
 
+        if (Auth::guard('admin')->check()) {
+            if(Auth::guard('admin')->user()->isAdmin()){
+                return $next($request);
+            }
+        }
+
+        return redirect('admin/login');
     }
 }
