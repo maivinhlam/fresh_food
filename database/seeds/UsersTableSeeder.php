@@ -14,16 +14,19 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'id' => 1,
-            'name' => 'user',
-            'email' => 'user@gmail.com',
-            'role_id' => 2,
-            'password' => bcrypt('12312310'),
-            'phone' => '0123456789',
-            'remember_token' => '',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        $limit = 20;
+        for ($i = 1; $i < $limit; $i++) {
+            DB::table('users')->insert([
+                'id' => 1,
+                'name' => "user$i",
+                'email' => "user$i@gmail.com",
+                'role_id' => 4,
+                'password' => bcrypt('12312310'),
+                'phone' => '0123456789',
+                'remember_token' => '',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }

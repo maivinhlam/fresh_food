@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\ProductType;
 use App\Models\Brand;
-use App\Models\User;
+use App\Models\Admin;
 use App\Models\Supplier;
 class ProductsTableSeeder extends Seeder
 {
@@ -31,10 +31,9 @@ class ProductsTableSeeder extends Seeder
                 'description' => $faker->paragraph,
                 'image_path' => $faker->imageUrl(640, 480, 'food', true),
                 'view_count' => $faker->randomNumber(4, false),
-                'creator_id' => User::query()->select('id')->get()->random()->id,
+                'creator_id' => Admin::query()->select('id')->get()->random()->id,
                 'created_at' => $faker->dateTime,
                 'updated_at' => now(),
-
             ]);
         }
     }
