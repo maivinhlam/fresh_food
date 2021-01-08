@@ -148,7 +148,7 @@
                                     <small>
                                         <i>Created: {{ $product->created_at }}</i>
                                         <br>
-                                        <i>Creator Id: {{ $product->creator_id }}</i>
+                                        <i>Creator: {{ $product->creator_name }}</i>
                                     </small>
                                 </td>
                                 <td>
