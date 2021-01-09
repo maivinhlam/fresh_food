@@ -46,6 +46,7 @@ Route::group([
     'middleware' => 'check.admin'
     ], function () {
         Route::resource('users', 'UserController');
+        Route::resource('admins', 'AdminController');
         Route::resource('products', 'ProductController');
         Route::resource('roles', 'RoleController');
         Route::resource('brands', 'BrandController');

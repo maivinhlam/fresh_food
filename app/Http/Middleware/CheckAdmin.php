@@ -25,6 +25,9 @@ class CheckAdmin
             if(Auth::guard('admin')->user()->isSystemAdmin()){
                 return $next($request);
             }
+            if(Auth::guard('admin')->user()->isAdmin()){
+                return $next($request);
+            }
         }
 
         return redirect('admin/login');

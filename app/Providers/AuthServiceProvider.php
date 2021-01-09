@@ -5,10 +5,12 @@ namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
+use App\Models\Admin;
 use App\Models\User;
 use App\Models\Permission;
 
 use App\Policies\UserPolicy;
+use App\Policies\AdminPolicy;
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -18,6 +20,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         User::class => UserPolicy::class,
+        Admin::class => AdminPolicy::class,
     ];
 
     /**
@@ -29,11 +32,11 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::before(function ($user) {
-            if($user->role->name === 'system_admin') {
-                return true;
-            }
-        });
+        // Gate::before(function ($user) {
+        //     if($user->role->name === 'system_admin') {
+        //         return true;
+        //     }
+        // });
 
         if(!$this->app->runningInConsole()) {
             foreach (Permission::all() as $permission) {

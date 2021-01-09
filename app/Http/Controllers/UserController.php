@@ -12,9 +12,23 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $perpage = 20;
+        if($request->perPage)
+        {
+            $perpage = $request->perPage;
+        }
+
+        $users = User::paginate($perpage);
+        $title = 'Users';
+
+        return view('admin.users.home',
+            [
+                'title'     => $title,
+                'users'    => $users,
+            ]
+        );
     }
 
     /**

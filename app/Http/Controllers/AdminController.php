@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -12,9 +13,29 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $perpage = 20;
+        if($request->perPage)
+        {
+            $perpage = $request->perPage;
+        }
+
+        $admins = Admin::paginate($perpage);
+        foreach ($admins as $key=>$admin) {
+            $admin->role_name = $admin->role->name;
+            if (Auth::guard('admin')->user()->cannot('view', $admin)) {
+                unset($admins[$key]);
+            }
+        }
+        $title = 'Admins';
+
+        return view('admin.admins.home',
+            [
+                'title'     => $title,
+                'admins'    => $admins,
+            ]
+        );
     }
 
     /**
