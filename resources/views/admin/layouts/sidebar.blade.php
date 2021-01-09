@@ -74,7 +74,12 @@
                                 <p>Users</p>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="{{ route('admins.index') }}" class="nav-link" data-content-target="Admins">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Admins</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item has-treeview">
