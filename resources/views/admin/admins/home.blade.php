@@ -36,13 +36,13 @@
 
                 <div class="col-md-6">
                     <div class="float-right">
-                        <button type="button" href="#" title="add new user" data-type="create" class="btn btn-success show_modal_form" data-toggle="modal"
-                             data-target="#modalEdit" data-title="Create" data-url="{{ route('admins.store')}}" >
+                        <button type="button" href="#" title="add new user" data-type="create" class="btn btn-success show_modal_form" data-toggle="modal" data-target="#modalEdit" data-title="Create"
+                            data-url="{{ route('admins.store') }}">
                             <i class="fa fa-plus-circle"></i>
                             Create
                         </button>
 
-                        <a href="{{route('admins.index')}}" title="refresh table for users" class="btn btn-primary" data-trigger-pjax="1" data-pjax-target="#user-grid">
+                        <a href="{{ route('admins.index') }}" title="refresh table for users" class="btn btn-primary" data-trigger-pjax="1" data-pjax-target="#user-grid">
                             <i class="fa fa-refresh"></i>
                             Refresh
                         </a>
@@ -110,39 +110,32 @@
                                     {{ $admin->name }}
                                 </a>
                             </td>
-                            <td class="" >
+                            <td>
                                 {{ $admin->email }}
                             </td>
-                            <td class="">
+                            <td>
                                 {{ $admin->role_name }}
                             </td>
-                            <td class="">
+                            <td>
                                 {{ $admin->phone }}
                             </td>
                             <td class="project-actions p-0 text-center">
-                                <div class="">
+                                <div>
                                     {{-- <a class="btn btn-primary btn-sm" href="#">
                                         <i class="fas fa-folder">
                                         </i>
                                         View
                                     </a> --}}
 
-                                    <button type="button" class="btn btn-info btn-sm mb-1" data-type="edit" data-toggle="modal" data-target="#modalEdit"
-                                        data-title="Edit"
-                                        data-name="{{ $admin->link }}"
-                                        data-image="{{ $admin->image }}"
-                                        data-url="{{ route('admins.update', $admin->id) }}"
-                                        >
+                                    <button type="button" class="btn btn-info btn-sm mb-1" data-type="edit" data-toggle="modal" data-target="#modalEdit" data-title="Edit"
+                                        data-name="{{ $admin->link }}" data-image="{{ $admin->image }}" data-url="{{ route('admins.update', $admin->id) }}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Edit
                                     </button>
 
-                                    <button id="btn_delete" type="button" class="btn btn-danger btn-sm mb-1" data-toggle="modal" data-target="#modalDelete"
-                                        data-title="Delete"
-                                        data-name="{{ $admin->link }}"
-                                        data-image="{{ $admin->image }}"
-                                        data-url="{{ route('admins.destroy', $admin->id) }}">
+                                    <button id="btn_delete" type="button" class="btn btn-danger btn-sm mb-1" data-toggle="modal" data-target="#modalDelete" data-title="Delete"
+                                        data-name="{{ $admin->link }}" data-image="{{ $admin->image }}" data-url="{{ route('admins.destroy', $admin->id) }}">
                                         <i class="fas fa-trash">
                                         </i>
                                         Delete
@@ -218,9 +211,9 @@
     $('#modalEdit').on('show.bs.modal', function (event) {
 
         var button = $(event.relatedTarget) // Button that triggered the modal
-        var type =  button.data('type');
+        var type = button.data('type');
         var url = button.data('url');
-        if(type == 'edit') {
+        if (type == 'edit') {
             var title = button.data('title');
 
             var link = button.data('link');
@@ -244,31 +237,28 @@
             $('#formProduct').find('#methodPUT').val('POST');
         }
     })
-
-
-
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-@if (Session::has('success'))
+@if(Session::has('success'))
     <script>
-        toastr["success"]("{{Session::get('success')}}", "Success")
+        toastr["success"]("{{ Session::get('success') }}", "Success")
 
         toastr.options = {
-        "closeButton": true,
-        "debug": false,
-        "newestOnTop": false,
-        "progressBar": true,
-        "positionClass": "toast-top-right",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
         }
     </script>
 @endif

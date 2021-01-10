@@ -110,13 +110,13 @@ $(document).ready(function () {
         items: 4
       },
       768: {
-        items: 5
+        items: 4
       },
       991: {
-        items: 6
+        items: 4
       },
       1199: {
-        items: 6
+        items: 4
       }
     }
   });

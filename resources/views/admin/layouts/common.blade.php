@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" type="image/x-icon" href="https://via.placeholder.com/200x200.png/910000?text=L" />
-    <title>{{ isset($title) ? $title : 'Admin' }}</title>
+    <title>{{ isset($title) ? $title : '' }} | Fresh Food Store</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -292,9 +292,9 @@
             var listLink = sidebar.find('.nav-treeview a');
             var link;
             for (link of listLink) {
-                var dataContent = link.getAttribute("data-content-target");
+                var dataContent = link.getAttribute("data-content-target")  + " | Fresh Food Store";
                 link.classList.remove("active");
-                if(dataContent == this.title) {
+                if(dataContent == title) {
                     link.classList.add("active");
                 }
             }

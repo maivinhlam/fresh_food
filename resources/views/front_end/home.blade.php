@@ -74,17 +74,17 @@
     <div class="newProduct">
         <div class="container">
             <div class="title">
-                <i>thực phẩm mới nhất</i>
+                <i>THỰC PHẨM MỚI NHẤT</i>
             </div>
             <div class="icon">
                 <img src="../images/leaves.png" alt="">
             </div>
             <div class="listProduct">
                 <div class="owl-carousel owl-theme listProduct__carousel">
-                    @foreach($products as $product)
+                    @foreach($new_products as $product)
                         <div class="owl-item product ">
                             <div class="card d-flex flex-grow-1 align-self-stretch" >
-                                <img class="card-img-top" src="/{{ $product->image_path }}" alt="Card image">
+                                <img class="card-img-top" src="{{ $product->image_path }}" alt="Card image">
                                 <div class="card-body">
                                   <h4 class="card-title">{{ $product->name }}</h4>
                                   <p class="card-text">{{ number_format($product->price, 0, ',', '.' ) }}đ</p>
@@ -111,6 +111,84 @@
         </div>
     </div>
 
+    <div class="newProduct">
+        <div class="container">
+            <div class="title">
+                <i>THỰC PHẨM XEM NHIỀU</i>
+            </div>
+            <div class="icon">
+                <img src="../images/leaves.png" alt="">
+            </div>
+            <div class="listProduct">
+                <div class="owl-carousel owl-theme listProduct__carousel">
+                    @foreach($hot_view_products as $product)
+                        <div class="owl-item product ">
+                            <div class="card d-flex flex-grow-1 align-self-stretch" >
+                                <img class="card-img-top" src="{{ $product->image_path }}" alt="Card image">
+                                <div class="card-body">
+                                  <h4 class="card-title">{{ $product->name }}</h4>
+                                  <p class="card-text">{{ number_format($product->price, 0, ',', '.' ) }}đ</p>
+                                  <div class="addToCart">Thêm vào giỏ hàng</div>
+                                </div>
+                            </div>
+
+                            {{-- <div class="image flex-grow-1 align-self-stretch">
+                                <img src="/{{ $product->image_path }}" alt="{{ $product->name }}">
+                            </div>
+                            <div class="content align-self-stretch">
+                                <div class="title">{{ $product->name }}</div>
+                                <div class="price">{{ number_format($product->price, 0, ',', '.' ) }}đ</div>
+                                <div class="addToCart">Thêm vào giỏ hàng</div>
+                            </div> --}}
+                        </div>
+                    @endforeach
+                </div>
+                <div class="listproduct__button">
+                    <div class="listproduct__button__prev"><i class="fas fa-chevron-left"></i></div>
+                    <div class="listproduct__button__next"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="newProduct">
+        <div class="container">
+            <div class="title">
+                <i>THỰC PHẨM MUA NHIỀU</i>
+            </div>
+            <div class="icon">
+                <img src="../images/leaves.png" alt="">
+            </div>
+            <div class="listProduct">
+                <div class="owl-carousel owl-theme listProduct__carousel">
+                    @foreach($hot_buy_products as $product)
+                        <div class="owl-item product ">
+                            <div class="card d-flex flex-grow-1 align-self-stretch" >
+                                <img class="card-img-top" src="{{ $product->image_path }}" alt="Card image">
+                                <div class="card-body">
+                                  <h4 class="card-title">{{ $product->name }}</h4>
+                                  <p class="card-text">{{ number_format($product->price, 0, ',', '.' ) }}đ</p>
+                                  <div class="addToCart">Thêm vào giỏ hàng</div>
+                                </div>
+                            </div>
+
+                            {{-- <div class="image flex-grow-1 align-self-stretch">
+                                <img src="/{{ $product->image_path }}" alt="{{ $product->name }}">
+                            </div>
+                            <div class="content align-self-stretch">
+                                <div class="title">{{ $product->name }}</div>
+                                <div class="price">{{ number_format($product->price, 0, ',', '.' ) }}đ</div>
+                                <div class="addToCart">Thêm vào giỏ hàng</div>
+                            </div> --}}
+                        </div>
+                    @endforeach
+                </div>
+                <div class="listproduct__button">
+                    <div class="listproduct__button__prev"><i class="fas fa-chevron-left"></i></div>
+                    <div class="listproduct__button__next"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="handBook">
         <div class="container">
             <div class="title">Cẩm nang nấu ăn</div>

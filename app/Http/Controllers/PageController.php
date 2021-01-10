@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Slide;
 use App\Models\Product;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class PageController extends Controller
 {
     /**
@@ -19,15 +19,35 @@ class PageController extends Controller
         {
             $perpage = $request->perPage;
         }
-        $slides = Slide::all();
-        $products = Product::paginate(5);
+
+        $slides     = Slide::all();
+        $products   = Product::paginate(15);
+        $new_products  =  DB::table('products')
+                            ->orderBy('created_at', 'asc')
+                            ->limit(15)
+                            ->get();
+        $hot_view_products  = DB::table('products')
+                                ->orderBy('view_count', 'desc')
+                                ->limit(15)
+                                ->get();
+        $hot_buy_products   = DB::table('products')
+                            ->orderBy('view_count', 'desc')
+                            ->limit(15)
+                            ->get();
+        $suggestion_products    = Product::paginate(5);
+        $news = Product::paginate(5);
         $title = 'Fresh Food';
         return view('front_end.home',
-        [
-            'products'      => $products,
-            'title'         => $title,
-            'slides'        => $slides,
-        ]
+            [
+                'products'              => $products,
+                'title'                 => $title,
+                'slides'                => $slides,
+                'hot_view_products'     => $hot_view_products,
+                'new_products'          => $new_products,
+                'hot_buy_products'      => $hot_buy_products,
+                'suggestion_products'   => $suggestion_products,
+                'news'                  => $news
+            ]
         );
     }
 
