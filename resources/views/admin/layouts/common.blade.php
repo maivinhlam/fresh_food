@@ -20,7 +20,7 @@
     <!-- JQVMap -->
     <link rel="stylesheet" href="../plugins/jqvmap/jqvmap.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../css/adminlte.min.css">
+    <link rel="stylesheet" href="../css/AdminLTE.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
@@ -74,7 +74,8 @@
                         <a href="#" class="dropdown-item">
                             <!-- Message Start -->
                             <div class="media">
-                                <img src="../img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                                <i class="fas fa-user"></i>
+                                {{-- <img src="../img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle"> --}}
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         Brad Diesel
@@ -152,7 +153,8 @@
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="nav-item dropdown user-menu">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                        <img src="../img/user2-160x160.jpg" class="user-image img-circle elevation-2" alt="User Image">
+                        <i class="fas fa-user"></i>
+                        {{-- <img src="../img/user2-160x160.jpg" class="user-image img-circle elevation-2" alt="User Image"> --}}
                         <span class="d-none d-md-inline">{{ Auth::guard('admin')->user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -282,7 +284,7 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="../js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="../js/demo.js"></script>
+    {{-- <script src="../js/demo.js"></script> --}}
     @yield('myscript')
 
     <script>
