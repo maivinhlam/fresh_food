@@ -271,17 +271,17 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="price" class="control-label">Price:</label>
-                            <input type="number" class="form-control" id="price" name="price" value="1" step="1000" min="0" max="1000000000">
+                            <input type="number" class="form-control" id="price" name="price" value="0" step="10000" min="1000" max="1000000000">
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="sell_percen" class="control-label">Sell Percen:</label>
-                            <input type="number" class="form-control mousewheel_increment" id="sell_percen" name="sell_percen" min="0" max="100" step="1">
+                            <input type="number" class="form-control mousewheel_increment" id="sell_percen" value="0" name="sell_percen" min="0" max="100" step="1">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="amount" class="control-label">Amount:</label>
-                        <input type="number" class="form-control" id="amount" name="amount" value="1" step="1" min="0" max="1000000000">
+                        <input type="number" class="form-control" id="amount" name="amount" value="0" step="1" min="0" max="1000000000">
                     </div>
                     <div class="form-group">
                         <div class="form-group">

@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="../plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    
+    
     @yield('myCSS')
 </head>
 
@@ -282,7 +284,7 @@
     <!-- AdminLTE App -->
     <script src="../js/adminlte.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="../js/pages/dashboard.js"></script>
+    {{-- <script src="../js/pages/dashboard.js"></script> --}}
     <!-- AdminLTE for demo purposes -->
     {{-- <script src="../js/demo.js"></script> --}}
     @yield('myscript')

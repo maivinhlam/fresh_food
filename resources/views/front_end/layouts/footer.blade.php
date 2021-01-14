@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>footer</title>
+
+<head> 
   <link rel="stylesheet" href="../css/footer.css">
 </head>
 <body>
@@ -39,4 +35,4 @@
   </div>
   <div class="copyright">Copyright © 2016 - All rights reserved</div>
 </body>
-</html>
+

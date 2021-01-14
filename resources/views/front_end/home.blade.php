@@ -1,5 +1,8 @@
 @extends('front_end.layouts.common')
-
+@section('myHead')
+<link rel="stylesheet" href="../css/owl.carousel.css">
+<link rel="stylesheet" href="../css/owl.theme.default.css">
+@endsection
 @section('content')
 <style>
     /* Make the image fully responsive */
@@ -71,46 +74,61 @@
         </div>
     </div>
 
-    <div class="newProduct">
-        <div class="container">
-            <div class="title">
+    <div class="newProduct container">
+            <div class="title text-center">
                 <i>THỰC PHẨM MỚI NHẤT</i>
             </div>
-            <div class="icon">
+            <div class="icon text-center mb-3">
                 <img src="../images/leaves.png" alt="">
             </div>
             <div class="listProduct">
-                <div class="owl-carousel owl-theme listProduct__carousel">
+                <div class="owl-carousel owl-theme  owl-carousel-new">
                     @foreach($new_products as $product)
-                        <div class="owl-item product ">
-                            <div class="card d-flex flex-grow-1 align-self-stretch" >
-                                <img class="card-img-top" src="{{ $product->image_path }}" alt="Card image">
-                                <div class="card-body">
-                                  <h4 class="card-title">{{ $product->name }}</h4>
-                                  <p class="card-text">{{ number_format($product->price, 0, ',', '.' ) }}đ</p>
-                                  <div class="addToCart">Thêm vào giỏ hàng</div>
-                                </div>
-                            </div>
-
-                            {{-- <div class="image flex-grow-1 align-self-stretch">
-                                <img src="/{{ $product->image_path }}" alt="{{ $product->name }}">
-                            </div>
-                            <div class="content align-self-stretch">
-                                <div class="title">{{ $product->name }}</div>
-                                <div class="price">{{ number_format($product->price, 0, ',', '.' ) }}đ</div>
+                        <div class="card d-flex flex-grow-1 align-self-stretch" >
+                            <img class="card-img-top" src="{{ $product->image_path }}" alt="Card image">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ $product->name }}</h4>
+                                <p class="card-text">{{ number_format($product->price, 0, ',', '.' ) }}đ</p>
                                 <div class="addToCart">Thêm vào giỏ hàng</div>
-                            </div> --}}
+                            </div>
                         </div>
                     @endforeach
                 </div>
-                <div class="listproduct__button">
+                {{-- <div class="listproduct__button">
                     <div class="listproduct__button__prev"><i class="fas fa-chevron-left"></i></div>
                     <div class="listproduct__button__next"><i class="fas fa-chevron-right"></i></div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
-
+    <div class="newProduct container">
+        <div class="title text-center">
+            <i>THỰC PHẨM XEM NHIỀU</i>
+        </div>
+        <div class="icon text-center mb-3">
+            <img src="../images/leaves.png" alt="">
+        </div>
+        <div class="listProduct">
+            <div class="owl-carousel owl-theme owl-carousel-hotview">
+                @foreach($hot_view_products as $product)
+                    <div class="card d-flex flex-grow-1 align-self-stretch" >
+                        <img class="card-img-top" src="{{ $product->image_path }}" alt="Card image">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ $product->name }}</h4>
+                            <p class="card-text">{{ number_format($product->price, 0, ',', '.' ) }}đ</p>
+                            <div class="addToCart">Thêm vào giỏ hàng</div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            {{-- <div class="listproduct__button">
+                <div class="listproduct__button__prev"><i class="fas fa-chevron-left"></i></div>
+                <div class="listproduct__button__next"><i class="fas fa-chevron-right"></i></div>
+            </div> --}}
+        </div>
+    </div>
+</div>
+{{--
     <div class="newProduct">
         <div class="container">
             <div class="title">
@@ -132,14 +150,7 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="image flex-grow-1 align-self-stretch">
-                                <img src="/{{ $product->image_path }}" alt="{{ $product->name }}">
-                            </div>
-                            <div class="content align-self-stretch">
-                                <div class="title">{{ $product->name }}</div>
-                                <div class="price">{{ number_format($product->price, 0, ',', '.' ) }}đ</div>
-                                <div class="addToCart">Thêm vào giỏ hàng</div>
-                            </div> --}}
+
                         </div>
                     @endforeach
                 </div>
@@ -171,14 +182,6 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="image flex-grow-1 align-self-stretch">
-                                <img src="/{{ $product->image_path }}" alt="{{ $product->name }}">
-                            </div>
-                            <div class="content align-self-stretch">
-                                <div class="title">{{ $product->name }}</div>
-                                <div class="price">{{ number_format($product->price, 0, ',', '.' ) }}đ</div>
-                                <div class="addToCart">Thêm vào giỏ hàng</div>
-                            </div> --}}
                         </div>
                     @endforeach
                 </div>
@@ -189,6 +192,7 @@
             </div>
         </div>
     </div>
+--}}
     <div class="handBook">
         <div class="container">
             <div class="title">Cẩm nang nấu ăn</div>
@@ -225,8 +229,67 @@
 </main>
 @endsection
 @section('myscript')
+<script src="../js/owl.carousel.js"></script>
+<script>
+    $(document).ready(function () {
+        var owl_new = $('.owl-carousel-new');
+        owl_new.owlCarousel({
+            loop: true,
+            nav: false,
+            margin: 10,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                960: {
+                    items: 4
+                },
+                1200: {
+                    items: 4
+                }
+            }
+        });
+        owl_new.on('mousewheel', '.owl-stage', function (e) {
+            if (e.deltaY > 0) {
+                owl_new.trigger('next.owl');
+            } else {
+                owl_new.trigger('prev.owl');
+            }
+            e.preventDefault();
+        });
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.js"></script>
-<script src="../js/script.js"></script>
+        var owl_hotview = $('.owl-carousel-hotview');
+        owl_hotview.owlCarousel({
+            loop: true,
+            nav: false,
+            margin: 10,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                960: {
+                    items: 4
+                },
+                1200: {
+                    items: 4
+                }
+            }
+        });
+        owl_hotview.on('mousewheel', '.owl-stage', function (e) {
+            if (e.deltaY > 0) {
+                owl_hotview.trigger('next.owl');
+            } else {
+                owl_hotview.trigger('prev.owl');
+            }
+            e.preventDefault();
+        });
+    });
+</script>
 
 @endsection
