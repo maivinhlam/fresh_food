@@ -14,20 +14,14 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/owl.carousel.js', 'public/js')
     .js('resources/js/adminlte.js', 'public/js')
-    
+
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/AdminLTE.scss', 'public/css')
     .sass('resources/sass/owl.carousel.scss', 'public/css')
-        
-    // .copyDirectory('resources/plugins', 'public/plugins')
-    // .copyDirectory('resources/css', 'public/css')
-    // .copyDirectory('resources/js', 'public/js')
-    
-    mix.scripts([
-        './node_modules/chart.js/dist/Chart.min.js',
-    ], 'public/js/adminlte-js.js')
-    mix.styles([
-        './node_modules/@fortawesome/fontawesome-free/css/all.min.css',
-    ], 'public/css/adminlte-css.css');
+    .copy('./node_modules/admin-lte/dist/js/pages/dashboard.js', 'public/js/pages/dashboard.js')
+    .copy('./node_modules/admin-lte/dist/js/adminlte.js.map', 'public/js/adminlte.js.map')
+    .copyDirectory('./node_modules/admin-lte/plugins', 'public/plugins')
+    .copyDirectory('resources/css', 'public/css')
+    .copyDirectory('resources/js', 'public/js')
     ;
 
