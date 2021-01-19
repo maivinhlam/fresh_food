@@ -26,6 +26,7 @@ class CreateProductsTable extends Migration
             $table->tinyInteger('sell_percen');
             $table->integer('amount');
             $table->longText('description');
+            $table->longText('articles');
             $table->string('image_path');
             $table->decimal('view_count', 8, 0);
             $table->unsignedBigInteger('creator_id');
