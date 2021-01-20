@@ -11,55 +11,7 @@
         height: 100%;
     }
 
-    .owl-carousel .nav-btn {
-        height: 47px;
-        position: absolute;
-        width: 50px;
-        cursor: pointer;
-        top: 45% !important;
-        box-shadow: 0 1px 12px 0 rgba(0, 0, 0, .12);
-        font-weight: bold;
-        font-size: 30px;
-        transition: 0.3s ease;
-        border-radius: 50%;
-        user-select: none;
-        background-color: white;
-        color: #474747e0 !important;
-        opacity: 0.85;
-    }
 
-    .owl-carousel .nav-btn:hover {
-        transform: scale(1.2);
-        opacity: 1;
-    }
-    .owl-carousel .card:hover {
-        /* transform: scale(1.3); */
-        border: 1px solid rgba(187, 106, 106, 0.938);
-        transform: translateY(-7px);
-        transition: all 0.4s ease-in-out;
-        cursor: pointer
-    }
-    .owl-carousel .owl-stage-outer:hover + .owl-nav .nav-btn {
-        transform: scale(1.2);
-        opacity: 1;
-    }
-    .owl-carousel .owl-prev.disabled,
-    .owl-carousel .owl-next.disabled {
-        pointer-events: none;
-        opacity: 0;
-    }
-
-    .owl-carousel .prev-slide {
-        left: -33px;
-    }
-
-    .owl-carousel .next-slide {
-        right: -33px;
-    }
-
-    a:hover {
-        text-decoration: none !important;
-    }
 </style>
 
 <div class="hero">
@@ -71,9 +23,9 @@
                 @else
                     <li data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index }}" class=""></li>
                 @endif
-
             @endforeach
         </ol>
+
         <div class="carousel-inner">
             @foreach($slides as $slide)
                 @if($loop->index == 0)
@@ -99,8 +51,7 @@
     </div>
 </div>
 <main class="index container">
-
-    <div class="categorys">
+    <section class="categorys">
         <div class="category">
             <img src="../images/img-featured-01.png" alt="" srcset="">
             <div class="title">
@@ -121,15 +72,15 @@
                 <a href="#">trái cây</a>
             </div>
         </div>
-    </div>
+    </section>
 
-
-    <div class="bg-white">
-        <div class="title text-center border-bottom-1">
-            <i>THỰC PHẨM MỚI NHẤT</i>
+    <section class="list-product header">
+        <div class="header-title text-center border-bottom-1 bg-white">
+            <span>THỰC PHẨM MỚI NHẤT</span>
+            <a href="#" class="text-danger ">Xem tất cả <i class="fas fa-chevron-circle-right "></i></a>
         </div>
 
-        <div class="owl-carousel owl-theme  owl-carousel-new">
+        <div class="owl-carousel owl-theme header-content carousel-product bg-white" id="new-product">
             @foreach($new_products as $product)
                 <a class="card" href="/product/{{ str_replace(" ", "-", $product->name) }}-i.{{ $product->id }}">
                     <img class="card-img-top" src="{{ $product->image_path }}">
@@ -149,13 +100,22 @@
                 </a>
             @endforeach
         </div>
-    </div>
+    </section>
 
     <div class="wrapper">
         <div class="d-md-flex align-items-md-center">
             <div class="h3">Fruits and vegetables</div>
-            <div class="ml-auto d-flex align-items-center views"> <span class="btn text-success"> <span class="fas fa-th px-md-2 px-1"></span><span>Grid view</span> </span> <span class="btn"> <span
-                        class="fas fa-list-ul"></span><span class="px-md-2 px-1">List view</span> </span> <span class="green-label px-md-2 px-1">428</span> <span class="text-muted">Products</span>
+            <div class="ml-auto d-flex align-items-center views">
+                <span class="btn text-success">
+                    <span class="fas fa-th px-md-2 px-1"></span>
+                    <span>Grid view</span>
+                </span>
+                <span class="btn">
+                    <span class="fas fa-list-ul"></span>
+                    <span class="px-md-2 px-1">List view</span>
+                </span>
+                <span class="green-label px-md-2 px-1">428</span>
+                <span class="text-muted">Products</span>
             </div>
         </div>
         <div class="d-lg-flex align-items-lg-center pt-2">
@@ -266,7 +226,7 @@
                     </form>
                 </div>
             </section> <!-- Products Section -->
-            <section id="products">
+            <section id="products" class="list-product">
                 <div class="container py-3">
                     <div class="row">
                         <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
@@ -425,26 +385,31 @@
 <script src="../js/owl.carousel.js"></script>
 <script>
     $(document).ready(function () {
-        var owl_new = $('.owl-carousel-new');
+        var owl_new = $('#new-product');
         owl_new.owlCarousel({
             loop: false,
             nav: true,
             margin: 10,
             dots: false,
+
             // navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
             navText: ["<div class='nav-btn prev-slide'>&#10094;</div>", "<div class='nav-btn next-slide'>&#10095;</div>"],
             responsive: {
                 0: {
-                    items: 1
+                    items: 1,
+                    slideBy: 1
                 },
                 600: {
-                    items: 3
+                    items: 3,
+                    slideBy: 3
                 },
                 960: {
-                    items: 4
+                    items: 4,
+                    slideBy: 4
                 },
                 1200: {
-                    items: 4
+                    items: 4,
+                    slideBy: 4
                 }
             }
         });
