@@ -1,7 +1,11 @@
 {
     "/js/adminlte.js": "/js/adminlte.js",
     "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/css/AdminLTE.css": "/css/AdminLTE.css",
+    "/css/owl.carousel.css": "/css/owl.carousel.css",
     "/js/owl.carousel.js": "/js/owl.carousel.js",
-    "/js/adminlte-js.js": "/js/adminlte-js.js",
-    "/css/adminlte-css.css": "/css/adminlte-css.css"
+    "/js/pages/dashboard.js": "/js/pages/dashboard.js",
+    "/js/adminlte.js.map": "/js/adminlte.js.map",
+    "/js/script.js": "/js/script.js"
 }

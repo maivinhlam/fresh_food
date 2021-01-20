@@ -22,6 +22,6 @@ mix.js('resources/js/app.js', 'public/js')
     .copy('./node_modules/admin-lte/dist/js/adminlte.js.map', 'public/js/adminlte.js.map')
     .copyDirectory('./node_modules/admin-lte/plugins', 'public/plugins')
     .copyDirectory('resources/css', 'public/css')
-    .copyDirectory('resources/js', 'public/js')
+    .copyDirectory('./node_modules/ckeditor', 'public/ckeditor')
     ;
 

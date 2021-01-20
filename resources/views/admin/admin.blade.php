@@ -1,4 +1,7 @@
 @extends('admin.layouts.common')
+@section('myCSS')
+
+@endsection
 @section('content')
 <section class="content">
     <div class="container-fluid">
@@ -587,4 +590,8 @@
       <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
   </section>
+@endsection
+@section('myscript')
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="{{ asset("/js/pages/dashboard.js") }}"></script>
 @endsection
