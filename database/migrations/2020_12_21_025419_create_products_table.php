@@ -23,15 +23,16 @@ class CreateProductsTable extends Migration
             $table->foreign('supplier_id')->references('id')->on('suppliers');
             $table->string('name');
             $table->decimal('price', 10, 0);
-            $table->tinyInteger('sell_percen');
-            $table->integer('amount');
-            $table->longText('description');
-            $table->longText('articles');
-            $table->string('image_path');
-            $table->decimal('view_count', 8, 0);
+            $table->tinyInteger('sell_percen')->nullable();
+            $table->integer('amount')->default(0);
+            $table->longText('description')->nullable();
+            $table->string('image_path')->nullable();
+            $table->decimal('view_count', 8, 0)->default(0);
             $table->unsignedBigInteger('creator_id');
             $table->foreign('creator_id')->references('id')->on('users');
             $table->timestamps();
+            $table->collation = 'utf8_unicode_ci';
+            $table->charset = 'utf8';
         });
     }
 

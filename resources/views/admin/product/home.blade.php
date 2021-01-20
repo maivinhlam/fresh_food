@@ -195,14 +195,18 @@
                                             data-view_count="{{ $product->view_count }}"
                                             data-url="{{ route('products.update', $product->id) }}"
                                             >
-                                            <i class="fas fa-pencil-alt">
-                                            </i>
+                                            <i class="fas fa-pencil-alt"></i>
                                             Edit
                                         </button>
+                                        <form action="{{ route('articles.edit', $product->articles) }}">
+                                            <button type="submit" class="btn btn-info btn-sm mb-1">
+                                                <i class="fas fa-pencil-alt"> </i>
+                                                Articles
+                                            </button>
+                                        </form>
                                         <button id="btn_delete" type="button" class="btn btn-danger btn-sm mb-1" data-toggle="modal" data-target="#modalDelete" data-title="Delete Product"
                                             data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-url="{{ route('products.destroy', $product->id) }}">
-                                            <i class="fas fa-trash">
-                                            </i>
+                                            <i class="fas fa-trash"></i>
                                             Delete
                                             </a>
                                     </div>
@@ -247,8 +251,8 @@
                             <label for="type_id" class="control-label">Product Type:</label>
                             <a href="{{route('product_types.index')}}" type="button" class="badge badge-primary"><i class="fa fa-plus-circle"></i>&nbsp; Add</a>
                             <select class="form-control" id="product_type" name="type">
-                            @foreach($producrtypes as $producrtype)
-                                <option value="{{$producrtype->id}}">{{$producrtype->name}}</option>
+                            @foreach($producttypes as $producttype)
+                                <option value="{{$producttype->id}}">{{$producttype->name}}</option>
                             @endforeach
                             </select>
                         </div>
@@ -371,6 +375,18 @@
             modal.find('.modal-title').text(title);
             $('#formProduct').attr('action', url);
             $('#formProduct').find('#methodPUT').val('POST');
+            
+            modal.find('.modal-body #product_type').val(1);
+            modal.find('.modal-body #brand').val(1);
+            modal.find('.modal-body #product_name').val("");
+            modal.find('.modal-body #price').val(0);
+            modal.find('.modal-body #sell_percen').val(0);
+
+            modal.find('.modal-body #amount').val(0);
+            modal.find('.modal-body #description').val("");
+            modal.find('.modal-body #image_link').val("");
+            modal.find('.modal-body #view_count').val(0);
+            
             modal.find('#btnSubmit').hide();
             modal.find('#btnCreate').show();
         }
@@ -385,6 +401,7 @@
             }
         });
         var url = $('#formProduct').attr('action');
+        var type = jQuery('#product_type').val();
         jQuery.ajax({
             url: url,
             method: 'post',
@@ -415,6 +432,25 @@
                     jQuery('.alert-danger').hide();
                     $('#open').hide();
                     $('#modalEdit').modal('hide');
+                    
+                    toastr["success"](result)
+                    toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                    }
                 }
             },
             error: function (err) {
@@ -434,28 +470,5 @@
 
 
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-@if (Session::has('success'))
-    <script>
-        toastr["success"]("{{Session::get('success')}}", "Success")
 
-        toastr.options = {
-        "closeButton": true,
-        "debug": false,
-        "newestOnTop": false,
-        "progressBar": true,
-        "positionClass": "toast-top-right",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-        }
-    </script>
-@endif
 @endsection

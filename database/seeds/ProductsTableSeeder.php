@@ -17,7 +17,7 @@ class ProductsTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        $limit = 200;
+        $limit = 30;
 
         for ($i = 0; $i < $limit; $i++) {
             DB::table('products')->insert([
@@ -29,7 +29,6 @@ class ProductsTableSeeder extends Seeder
                 'sell_percen' => $faker->numberBetween(2, 55),
                 'amount' => $faker->randomNumber(4, false),
                 'description' => $faker->paragraph,
-                'articles' => $faker->paragraph,
                 'image_path' => $faker->imageUrl(640, 480, 'food', true),
                 'view_count' => $faker->randomNumber(4, false),
                 'creator_id' => Admin::query()->select('id')->get()->random()->id,
