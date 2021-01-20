@@ -18,10 +18,14 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/AdminLTE.scss', 'public/css')
     .sass('resources/sass/owl.carousel.scss', 'public/css')
+
     .copy('./node_modules/admin-lte/dist/js/pages/dashboard.js', 'public/js/pages/dashboard.js')
     .copy('./node_modules/admin-lte/dist/js/adminlte.js.map', 'public/js/adminlte.js.map')
+
     .copyDirectory('./node_modules/admin-lte/plugins', 'public/plugins')
     .copyDirectory('resources/css', 'public/css')
     .copyDirectory('./node_modules/ckeditor', 'public/ckeditor')
+
+    .sass('resources/sass/product.scss', 'public/css')
     ;
 
