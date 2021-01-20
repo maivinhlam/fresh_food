@@ -13,8 +13,6 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'PageController@index')->name('home');
-
 Route::middleware('check.admin')->group(function () {
     Route::get('/admin', function () {
         return view('admin.admin');
@@ -35,7 +33,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     route::post('login', 'Admin\LoginController@login')->name('postlogin');
     route::get('logout', 'Admin\LoginController@logout')->name('getlogout');
     route::post('logout', 'Admin\LoginController@logout')->name('logout');
-
     route::get('register', 'Admin\RegisterController@showRegistrationForm')->name('register');
     route::post('register', 'Admin\RegisterController@register')->name('postregister');
 });
@@ -52,6 +49,11 @@ Route::group([
         Route::resource('brands', 'BrandController');
         Route::resource('product_types', 'ProductTypeController');
         Route::resource('slides', 'SlideController');
+        Route::resource('articles', 'ArticlesController');
     }
 );
+
+Route::get('/', 'PageController@index')->name('home');
+Route::get('/product/{name}i.{id}', 'PageController@about');
+
 ?>

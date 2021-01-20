@@ -116,4 +116,19 @@ class PageController extends Controller
     {
         //
     }
+
+    public function about(Request $request, $name, $id)
+    {
+
+        $product   = Product::Find($id);
+
+        $title = $product->name . " | Fresh Food";
+        return view('front_end.product.detail-product',
+            [
+                'product'               => $product,
+                'title'                 => $title,
+            ]
+        );
+    }
+
 }
