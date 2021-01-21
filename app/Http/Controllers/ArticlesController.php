@@ -36,7 +36,7 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-       
+
     }
 
     /**
@@ -63,7 +63,7 @@ class ArticlesController extends Controller
         $product = Product::Find($articles->product_id);
         $content = $articles->content;
         $title = $product->name;
-        
+
         return view('admin.articles.edit',
         [
             'title'     => $title,
@@ -83,7 +83,7 @@ class ArticlesController extends Controller
     public function update(Request $request, Articles $articles)
     {
         $id = $request->id;
-        $content = $request->content;
+        $content = str_replace("&nbsp;", " ", $request->content);
         $articles = Articles::Find($id);
         $product = Product::Find($articles->product_id);
         $articles->content = $content;
