@@ -17,7 +17,7 @@ class CreateNewsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->longText('content');
-            $table->string('image');
+            $table->string('thumbnail');
             $table->timestamps();
         });
     }
