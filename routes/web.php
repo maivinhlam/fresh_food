@@ -54,6 +54,17 @@ Route::group([
 );
 
 Route::get('/', 'PageController@index')->name('home');
-Route::get('/product/{name}i.{id}', 'PageController@about');
+
+Route::get('/product', 'PageController@category_product')->name('category_product');
+Route::get('/product/{name}i.{id}', 'PageController@detail_product')->name('detail_product');
+
+Route::get('/news', 'PageController@category_news')->name('category_news');
+Route::get('/news/{name}i.{id}', 'PageController@detail_news')->name('detail_news');
+
+Route::get('/product/mostbuy', 'PageController@product_most_buyed')->name('product_most_buyed');
+Route::get('/product/new', 'PageController@new_product')->name('new_product');
+
+Route::get('/cart', 'PageController@cart')->name('cart');
+
 
 ?>

@@ -10,12 +10,23 @@
         width: 100%;
         height: 100%;
     }
-
-
 </style>
 
-<div class="hero">
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<div class="hero mt-3" style="height: 40vh">
+    <div id="carouselExampleIndicators" class="carousel slide h-100" data-ride="carousel">
+        <div class="carousel-inner h-100">
+            @foreach($slides as $slide)
+                @if($loop->index == 0)
+                    <div class="carousel-item active">
+                        <img src="{{ $slide->image }}" class="d-block w-100 h-100" alt="...">
+                    </div>
+                @else
+                    <div class="carousel-item h-100">
+                        <img src="{{ $slide->image }}" class="d-block w-100 h-100" alt="...">
+                    </div>
+                @endif
+            @endforeach
+        </div>
         <ol class="carousel-indicators">
             @foreach($slides as $slide)
                 @if($loop->index == 0)
@@ -25,21 +36,6 @@
                 @endif
             @endforeach
         </ol>
-
-        <div class="carousel-inner">
-            @foreach($slides as $slide)
-                @if($loop->index == 0)
-                    <div class="carousel-item active">
-                        <img src="/{{ $slide->image }}" class="d-block w-100" alt="...">
-                    </div>
-                @else
-                    <div class="carousel-item">
-                        <img src="/{{ $slide->image }}" class="d-block w-100" alt="...">
-                    </div>
-                @endif
-            @endforeach
-
-        </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
@@ -55,11 +51,11 @@
         <div class="category">
             <img src="../images/img-featured-01.png" alt="" srcset="">
             <div class="title">
-                <a href="#" class="hoverborder">thực phẩm</a>
+                <a href="#" class="">thực phẩm</a>
             </div>
         </div>
 
-        <div class="category">
+        <div class="category mx-3">
             <img src="../images/img-featured-02.png" alt="" srcset="">
             <div class="title">
                 <a href="#">rau sạch</a>
@@ -77,7 +73,7 @@
     <section class="list-product header">
         <div class="header-title text-center border-bottom-1 bg-white">
             <span>THỰC PHẨM MỚI NHẤT</span>
-            <a href="#" class="text-danger ">Xem tất cả <i class="fas fa-chevron-circle-right "></i></a>
+            <a href="{{ route('new_product') }}" class="text-danger ">Xem tất cả <i class="fas fa-chevron-circle-right "></i></a>
         </div>
 
         <div class="owl-carousel owl-theme header-content carousel-product bg-white" id="new-product">
