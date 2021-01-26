@@ -18,11 +18,11 @@
             @foreach($slides as $slide)
                 @if($loop->index == 0)
                     <div class="carousel-item active">
-                        <img src="{{ $slide->image }}" class="d-block w-100 h-100" alt="...">
+                        <img src="{{ asset($slide->image) }}" class="d-block w-100 h-100" alt="...">
                     </div>
                 @else
                     <div class="carousel-item h-100">
-                        <img src="{{ $slide->image }}" class="d-block w-100 h-100" alt="...">
+                        <img src="{{ asset($slide->image) }}" class="d-block w-100 h-100" alt="...">
                     </div>
                 @endif
             @endforeach
@@ -49,21 +49,21 @@
 <main class="index container">
     <section class="categorys">
         <div class="category">
-            <img src="../images/img-featured-01.png" alt="" srcset="">
+            <img src="{{ asset('images/img-featured-01.png') }}" alt="" srcset="">
             <div class="title">
                 <a href="#" class="">thực phẩm</a>
             </div>
         </div>
 
         <div class="category mx-3">
-            <img src="../images/img-featured-02.png" alt="" srcset="">
+            <img src="{{ asset('images/img-featured-02.png') }}" alt="" srcset="">
             <div class="title">
                 <a href="#">rau sạch</a>
             </div>
         </div>
 
         <div class="category">
-            <img src="../images/img-featured-03.png" alt="" srcset="">
+            <img src="{{ asset('images/img-featured-03.png') }}" alt="" srcset="">
             <div class="title">
                 <a href="#">trái cây</a>
             </div>
@@ -98,7 +98,7 @@
         </div>
     </section>
 
-    <div class="wrapper">
+    {{-- <div class="wrapper">
         <div class="d-md-flex align-items-md-center">
             <div class="h3">Fruits and vegetables</div>
             <div class="ml-auto d-flex align-items-center views">
@@ -340,7 +340,7 @@
 
 
         </div>
-    </div>
+    </div> --}}
 
     <div class="handBook">
         <div class="container">
