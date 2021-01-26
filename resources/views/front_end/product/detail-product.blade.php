@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="row mt-5">
-    <div class="col-8">
+    <div class="col-8 pr-1">
         <div class="row">
             <div class="col-6">
                 <img src="{{ $product->image_path }}" alt="" srcset="" class="w-100">
@@ -37,7 +37,7 @@
 
         </div>
         <div class="comment">
-            <img src="../images/comment.png" alt="" srcset="">
+            <img src="../images/comment.png" alt="" srcset=""  class="w-100">
         </div>
     </div>
     <div class="right col-4" id="sidebar">
