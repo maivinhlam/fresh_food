@@ -36,7 +36,7 @@
     </a>
     </div>
     <div class="cart">
-      <a href="#">
+      <a href="{{ route('cart') }}">
         <i class="fas fa-shopping-cart">
           <span class="badge">3</span>
         </i>
