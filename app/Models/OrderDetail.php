@@ -12,6 +12,6 @@ class OrderDetail extends Model
      * @var array
      */
     protected $fillable = [
-        'order_id', 'product_id', 'quantity','current_unit_price',
+        'order_id', 'product_id', 'quantity', 'current_price',
     ];
 }

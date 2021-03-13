@@ -65,6 +65,7 @@ Route::get('/product/mostbuy', 'PageController@product_most_buyed')->name('produ
 Route::get('/product/new', 'PageController@new_product')->name('new_product');
 
 Route::get('/cart', 'PageController@cart')->name('cart');
+Route::post('/addtocart', 'PageController@add_to_cart')->name('add_to_cart');
 
 
 ?>

@@ -17,6 +17,6 @@ class Slide extends Model
 
     public function creator()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Admin::class);
     }
 }

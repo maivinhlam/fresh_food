@@ -45,11 +45,6 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
-    public function slide()
-    {
-        return $this->belongsTo(User::class);
-    }
-
     public function hasPermission(Permission $permission)
     {
         return !! optional(optional($this->role)->permissions)->contains($permission);
@@ -64,5 +59,9 @@ class User extends Authenticatable
         if($this->role_id === 1) {
             return true;
         }
+    }
+
+    public function cart() {
+        return $this->hasOne(Cart::class);
     }
 }

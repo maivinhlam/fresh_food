@@ -30,6 +30,12 @@ class Product extends Model
         return $this->belongsTo(Admin::class);
     }
 
+
+    public function slide()
+    {
+        return $this->belongsTo(Slide::class);
+    }
+
     public function type()
     {
         return $this->belongsTo(ProductType::class);

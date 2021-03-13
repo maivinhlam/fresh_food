@@ -38,7 +38,7 @@
     <div class="cart">
       <a href="{{ route('cart') }}">
         <i class="fas fa-shopping-cart">
-          <span class="badge">3</span>
+          <span class="badge">{{ $cart_count }}</span>
         </i>
       </a>
     </div>

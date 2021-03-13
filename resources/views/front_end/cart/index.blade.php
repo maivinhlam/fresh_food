@@ -8,43 +8,33 @@
 <table class="table table-striped table-bordered mt-5">
     <thead>
         <tr>
-            <th scope="col">Mã sản phẩm</th>
+
             <th scope="col">Ảnh</th>
             <th scope="col">Tên sản phẩm</th>
             <th scope="col">Số lượng</th>
             <th scope="col">Giá</th>
             <th scope="col">Tổng</th>
-            <th scope="col"></th>
+
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-        </tr>
+        @if($products)
+            @foreach($products as $product)
+                <tr>
+
+                    <td>
+                        <a href="/product/{{ str_replace(" ", "-", $product->name) }}-i.{{ $product->id }}">
+                            <img src="{{ asset($product->image) }}" width="100px" class="d-block " alt="...">
+                        </a>
+                    </td>
+                    <td>{{ $product->name }}</td>
+                    <td>{{ $product->quantity }}</td>
+                    <td>{{ number_format($product->current_price, 0, ',', '.' )}}đ</td>
+                    <td>{{ number_format($product->total, 0, ',', '.' ) }}đ</td>
+
+                </tr>
+            @endforeach
+        @endif
 
         <tr>
             <td colspan="3">Tổng: </td>
